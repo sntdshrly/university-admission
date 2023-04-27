@@ -1,5 +1,15 @@
 import React, {useEffect} from 'react';
-import {View, Image, StyleSheet, Text} from 'react-native';
+import {
+  View,
+  Image,
+  ImageBackground,
+  StyleSheet,
+  Text,
+  Dimensions,
+} from 'react-native';
+
+const ScreenWidth = Dimensions.get('window').width;
+const ScreenHeight = Dimensions.get('window').height;
 
 const SplashScreen = ({navigation}) => {
   useEffect(() => {
@@ -12,22 +22,31 @@ const SplashScreen = ({navigation}) => {
 
   return (
     <View style={styles.container}>
-      <Text style={styles.h1}>Slash Screen</Text>
+      <ImageBackground
+        source={require('../assets/splashscreen.png')}
+        style={[
+          styles.container,
+          {
+            width: ScreenWidth,
+            height: ScreenHeight,
+          },
+        ]}>
+        <Text style={styles.h1}>Splash Screen</Text>
+      </ImageBackground>
     </View>
   );
 };
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
     alignItems: 'center',
     justifyContent: 'center',
-    backgroundColor: '#ffffff',
   },
   h1: {
     fontSize: 30,
     fontWeight: 'bold',
     textAlign: 'center',
+    color: '#000000',
   },
 });
 
