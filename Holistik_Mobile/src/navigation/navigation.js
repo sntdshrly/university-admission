@@ -28,6 +28,7 @@ const WH = Dimensions.get('window').height;
 const statusBarHeight = StatusBar.currentHeight;
 
 import SplashScreen from './splashscreen';
+import LoginScreen from '../pages/login';
 
 const Stack = createStackNavigator();
 const StackScreen = createNativeStackNavigator();
@@ -46,19 +47,6 @@ const NoneNativeAnimate = {
 };
 
 //====================================================HomeRemedial
-
-const Dashboard = () => (
-  <Stack.Navigator
-    initialRouteName="HomeCollection"
-    headerMode="none"
-    mode="modal">
-    <Stack.Screen
-      options={ModalAnimate}
-      name="HomeCollection"
-      component={HomeCollection}
-    />
-  </Stack.Navigator>
-);
 
 //====================================================Route
 const navigationRef = createRef();
@@ -168,13 +156,6 @@ const Navigation = ({navigation}) => {
             const currentRouteName =
               navigationRef.current.getCurrentRoute().name;
 
-            if (previousRouteName !== currentRouteName) {
-              analytics().logScreenView({
-                screen_name: currentRouteName,
-                screen_class: currentRouteName,
-              });
-            }
-
             routeNameRef.current = currentRouteName;
           }}>
           {/* {isLoader()} */}
@@ -187,6 +168,11 @@ const Navigation = ({navigation}) => {
               options={ModalAnimate}
               name="SplashScreen"
               component={SplashScreen}
+            />
+            <Stack.Screen
+              options={ModalAnimate}
+              name="LoginScreen"
+              component={LoginScreen}
             />
           </Stack.Navigator>
         </NavigationContainer>
