@@ -14,7 +14,7 @@ const ScreenHeight = Dimensions.get('window').height;
 const SplashScreen = ({navigation}) => {
   useEffect(() => {
     const timer = setTimeout(() => {
-      navigation.replace('LoginScreen');
+      navigation.replace('StartScreen');
     }, 1000); // change this to the amount of time you want your splash screen to be displayed
 
     return () => clearTimeout(timer);
@@ -30,9 +30,7 @@ const SplashScreen = ({navigation}) => {
             width: ScreenWidth,
             height: ScreenHeight,
           },
-        ]}>
-        <Text style={styles.h1}>Splash Screen</Text>
-      </ImageBackground>
+        ]}></ImageBackground>
     </View>
   );
 };

@@ -29,6 +29,9 @@ const statusBarHeight = StatusBar.currentHeight;
 
 import SplashScreen from './splashscreen';
 import LoginScreen from '../pages/login';
+import RegisterScreen from '../pages/register';
+import StartScreen from '../pages/start';
+import HomeScreen from '../pages/home';
 
 const Stack = createStackNavigator();
 const StackScreen = createNativeStackNavigator();
@@ -53,95 +56,6 @@ const navigationRef = createRef();
 const routeNameRef = createRef();
 
 const Navigation = ({navigation}) => {
-  //   const {styleGlobal, theme} = useContext(AppContext);
-
-  useEffect(() => {}, []);
-
-  //   View.defaultProps = {
-  //     ...(View.defaultProps || {}),
-  //     keyboardShouldPersistTaps: 'handled',
-  //     needsOffscreenAlphaCompositing: true,
-  //   };
-
-  //   ScrollView.defaultProps = {
-  //     ...(ScrollView.defaultProps || {}),
-  //     keyboardShouldPersistTaps: 'handled',
-  //   };
-
-  //   FlatList.defaultProps = {
-  //     ...(FlatList.defaultProps || {}),
-  //     keyboardShouldPersistTaps: 'handled',
-  //   };
-
-  //   Text.defaultProps = {
-  //     ...(Text.defaultProps || {}),
-  //     allowFontScaling: false,
-  //   };
-
-  //   TextInputRN.defaultProps = {
-  //     ...(TextInputRN.defaultProps || {}),
-  //     allowFontScaling: false,
-  //     placeholderTextColor: theme.color.rgba50,
-  //     style: {
-  //       paddingVertical: WW * 0.025,
-  //       color: theme.color.blackStr,
-  //     },
-  //   };
-
-  //   TextInput.defaultProps = {
-  //     ...(TextInput.defaultProps || {}),
-  //     allowFontScaling: false,
-  //     mode: 'outlined',
-  //     theme: {
-  //       colors: {
-  //         text: theme.color.blackStr,
-  //         primary: theme.color.rgba50,
-  //         placeholder: theme.color.rgba75,
-  //         disabled: theme.color.rgba50,
-  //       },
-  //     },
-  //     style: {
-  //       marginBottom: WW * 0.05,
-  //       height: WW * 0.125,
-  //       backgroundColor: theme.color.blackLow,
-  //     },
-  //   };
-
-  //   Modal.defaultProps = {
-  //     ...(Modal.defaultProps || {}),
-  //     theme: {
-  //       colors: {
-  //         backdrop: theme.color.rgba00,
-  //       },
-  //     },
-  //     contentContainerStyle: {
-  //       flex: 1,
-  //       marginTop: -statusBarHeight,
-  //     },
-  //   };
-
-  //   Picker.defaultProps = {
-  //     ...(Picker.defaultProps || {}),
-  //     allowFontScaling: false,
-  //   };
-
-  //   Picker.Item.defaultProps = {
-  //     ...(Picker.Item.defaultProps || {}),
-  //     allowFontScaling: false,
-  //   };
-
-  //   Pressable.defaultProps = {
-  //     ...(Pressable.defaultProps || {}),
-  //     android_disableSound: false,
-  //     style: ({pressed}) => [
-  //       styleGlobal.containerGlobalButton,
-  //       {
-  //         transform: [{scale: pressed ? 0.98 : 1}],
-  //       },
-  //     ],
-  //   };
-  //===================================================================================
-
   return (
     <PortalProvider>
       <Provider>
@@ -171,8 +85,23 @@ const Navigation = ({navigation}) => {
             />
             <Stack.Screen
               options={ModalAnimate}
+              name="StartScreen"
+              component={StartScreen}
+            />
+            <Stack.Screen
+              options={ModalAnimate}
               name="LoginScreen"
               component={LoginScreen}
+            />
+            <Stack.Screen
+              options={ModalAnimate}
+              name="RegisterScreen"
+              component={RegisterScreen}
+            />
+            <Stack.Screen
+              options={ModalAnimate}
+              name="HomeScreen"
+              component={HomeScreen}
             />
           </Stack.Navigator>
         </NavigationContainer>
