@@ -1,4 +1,4 @@
-import React, {useEffect} from 'react';
+import React, {useEffect, useState} from 'react';
 import {
   View,
   Image,
@@ -7,6 +7,7 @@ import {
   Text,
   Dimensions,
   TouchableOpacity,
+  ActivityIndicator,
 } from 'react-native';
 import {styles} from '../style/styleGlobal';
 import IconMC from 'react-native-vector-icons/MaterialCommunityIcons';
@@ -15,13 +16,17 @@ const WW = Dimensions.get('window').width;
 const WH = Dimensions.get('window').height;
 
 const HomeScreen = ({navigation}) => {
-  useEffect(() => {
-    const timer = setTimeout(() => {
-      console.log('Main Screen');
-    }, 3000); // change this to the amount of time you want your splash screen to be displayed
+  const [ShowDaftar, setShowDaftar] = useState(false);
+  const [Lulus, setLulus] = useState(false);
+  const [checkloading, setCheckLoading] = useState(true);
 
-    return () => clearTimeout(timer);
-  }, [navigation]);
+  useEffect(() => {}, [navigation]);
+
+  const checkLulus = () => {
+    setTimeout(() => {
+      setCheckLoading(false);
+    }, 2000);
+  };
 
   return (
     <ImageBackground
@@ -47,21 +52,71 @@ const HomeScreen = ({navigation}) => {
           </View>
         </View>
       </View>
+      {ShowDaftar ? (
+        <View style={styles.basehomestatus}>
+          <View style={{flexDirection: 'row'}}>
+            <View style={styles.box_basehomestatus}>
+              <Text style={styles.h1white}>80</Text>
+              <Text style={styles.h3white}>Nilai</Text>
+            </View>
+            <View style={styles.box_basehomestatus}>
+              <Text style={[styles.h2white, {textAlign: 'center'}]}>
+                Teknik Informatika
+              </Text>
+              <Text style={styles.h3white}>Jurusan</Text>
+            </View>
+            <View style={styles.circlestatus}>
+              {!Lulus && !checkloading ? (
+                <>
+                  <ActivityIndicator size={70} color="#ff0000" />
+                  <Text style={[styles.h3black, {fontWeight: 'bold'}]}>
+                    Gagal
+                  </Text>
+                </>
+              ) : Lulus && !checkloading ? (
+                <>
+                  <ActivityIndicator size={70} color="#00ff00" />
+                  <Text style={[styles.h3black, {fontWeight: 'bold'}]}>
+                    Lulus
+                  </Text>
+                </>
+              ) : (
+                <>
+                  <ActivityIndicator size={70} color="#172dff" />
+                  <Text style={[styles.h3black, {fontWeight: 'bold'}]}>
+                    Loading...
+                  </Text>
+                </>
+              )}
+            </View>
+          </View>
+        </View>
+      ) : (
+        <View></View>
+      )}
+
       <View style={styles.basehome}>
-        <View style={styles.basehomecard}>
+        <TouchableOpacity
+          style={styles.basehomecard}
+          onPress={() => {
+            setShowDaftar(!ShowDaftar);
+            checkLulus();
+            setCheckLoading(true);
+            setLulus(Math.random() >= 0.5);
+          }}>
           <Text style={styles.h3white}>Pendaftaran Reguler -Genap</Text>
 
           <Image
             source={require('../assets/books.png')}
             style={styles.imagebookcard}></Image>
-        </View>
-        <View style={styles.basehomecard}>
+        </TouchableOpacity>
+        <TouchableOpacity style={styles.basehomecard}>
           <Text style={styles.h3white}>Pendaftaran Reguler -Ganjil</Text>
 
           <Image
             source={require('../assets/books.png')}
             style={styles.imagebookcard}></Image>
-        </View>
+        </TouchableOpacity>
       </View>
     </ImageBackground>
   );
