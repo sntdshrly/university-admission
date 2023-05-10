@@ -44,6 +44,11 @@ export const styles = StyleSheet.create({
     flex: 1,
     padding: (WW * 10) / 100,
   },
+  container_blue: {
+    backgroundColor: '#579EF1',
+    flex: 1,
+    padding: (WW * 10) / 100,
+  },
   centered: {
     alignItems: 'center',
     justifyContent: 'center',
@@ -94,6 +99,12 @@ export const styles = StyleSheet.create({
     color: color.white,
     fontWeight: '600',
   },
+  h4white: {
+    fontSize: 13,
+    color: color.white,
+    fontWeight: '600',
+  },
+
   inputEmail: {
     height: (WH * 5) / 100,
     borderColor: 'black',
@@ -182,13 +193,7 @@ export const styles = StyleSheet.create({
     position: 'absolute',
     resizeMode: 'cover',
   },
-  containerx: {
-    flex: 1,
-    alignItems: 'center',
-    justifyContent: 'center',
-    overflow: 'hidden',
-    backgroundColor: 'white',
-  },
+
   basehomestatus: {
     backgroundColor: color.blackLow,
     borderColor: color.BlueMed,
@@ -217,5 +222,52 @@ export const styles = StyleSheet.create({
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
+  },
+  basehome_page: {
+    backgroundColor: color.white,
+    position: 'absolute',
+    bottom: 0,
+    alignItems: 'center',
+    width: WW,
+    height: (WH * 80) / 100,
+    borderTopRightRadius: 30,
+    borderTopLeftRadius: 30,
+    padding: (WW * 5) / 100,
+  },
+  cardnotif: {
+    width: (WW * 90) / 100,
+    height: (WH * 8) / 100,
+    borderColor: '#0E86D4',
+    borderWidth: 2,
+    backgroundColor: '#579EF1',
+    borderRadius: 20,
+    marginVertical: (WH * 1) / 100,
+    // paddin: (WW * 2) / 100,
+    overflow: 'hidden',
+  },
+  iconnotifcard: {
+    width: (WW * 15) / 100,
+    height: (WH * 8) / 100,
+    backgroundColor: '#0E86D4',
+    justifyContent: 'center',
+    alignItems: 'center',
+    borderTopRightRadius: 0,
+    borderBottomRightRadius: 0,
+  },
+  basehome_pageprodi: {
+    backgroundColor: color.white,
+    position: 'absolute',
+    bottom: 0,
+    width: WW,
+    height: (WH * 80) / 100,
+    borderTopRightRadius: 30,
+    borderTopLeftRadius: 30,
+    padding: (WW * 5) / 100,
+  },
+  searchBar: {
+    borderRadius: 20,
+    borderWidth: 1,
+    borderColor: '#ccc',
+    backgroundColor: '#579EF1',
   },
 });

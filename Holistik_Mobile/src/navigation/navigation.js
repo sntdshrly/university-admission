@@ -32,6 +32,9 @@ import LoginScreen from '../pages/login';
 import RegisterScreen from '../pages/register';
 import StartScreen from '../pages/start';
 import HomeScreen from '../pages/home';
+import Notifications from '../pages/notifications';
+import HistoryScreen from '../pages/history';
+import ProdiScreen from '../pages/prodi';
 
 const Stack = createStackNavigator();
 const StackScreen = createNativeStackNavigator();
@@ -102,6 +105,21 @@ const Navigation = ({navigation}) => {
               options={ModalAnimate}
               name="HomeScreen"
               component={HomeScreen}
+            />
+            <Stack.Screen
+              options={ModalAnimate}
+              name="Notifications"
+              component={Notifications}
+            />
+            <Stack.Screen
+              options={ModalAnimate}
+              name="HistoryScreen"
+              component={HistoryScreen}
+            />
+            <Stack.Screen
+              options={ModalAnimate}
+              name="ProdiScreen"
+              component={ProdiScreen}
             />
           </Stack.Navigator>
         </NavigationContainer>

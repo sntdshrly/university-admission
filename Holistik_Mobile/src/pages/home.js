@@ -46,9 +46,19 @@ const HomeScreen = ({navigation}) => {
         </View>
         <View style={{position: 'absolute', right: (WW * 1) / 100}}>
           <View style={{flexDirection: 'row'}}>
-            <IconMC name="account-outline" size={35} color="#000000" />
+            <TouchableOpacity
+              onPress={() => {
+                navigation.navigate('HistoryScreen');
+              }}>
+              <IconMC name="history" size={35} color="#000000" />
+            </TouchableOpacity>
             <View style={{marginHorizontal: (WW * 1) / 100}} />
-            <IconMC name="bell-outline" size={35} color="#000000" />
+            <TouchableOpacity
+              onPress={() => {
+                navigation.navigate('Notifications');
+              }}>
+              <IconMC name="bell-outline" size={35} color="#000000" />
+            </TouchableOpacity>
           </View>
         </View>
       </View>
@@ -110,7 +120,11 @@ const HomeScreen = ({navigation}) => {
             source={require('../assets/books.png')}
             style={styles.imagebookcard}></Image>
         </TouchableOpacity>
-        <TouchableOpacity style={styles.basehomecard}>
+        <TouchableOpacity
+          style={styles.basehomecard}
+          onPress={() => {
+            navigation.navigate('ProdiScreen');
+          }}>
           <Text style={styles.h3white}>Pendaftaran Reguler -Ganjil</Text>
 
           <Image
