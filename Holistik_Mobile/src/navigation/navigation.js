@@ -35,6 +35,7 @@ import HomeScreen from '../pages/home';
 import Notifications from '../pages/notifications';
 import HistoryScreen from '../pages/history';
 import ProdiScreen from '../pages/prodi';
+import ScoreScreen from '../pages/score';
 
 const Stack = createStackNavigator();
 const StackScreen = createNativeStackNavigator();
@@ -120,6 +121,11 @@ const Navigation = ({navigation}) => {
               options={ModalAnimate}
               name="ProdiScreen"
               component={ProdiScreen}
+            />
+            <Stack.Screen
+              options={ModalAnimate}
+              name="ScoreScreen"
+              component={ScoreScreen}
             />
           </Stack.Navigator>
         </NavigationContainer>
