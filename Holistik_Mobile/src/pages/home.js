@@ -44,7 +44,7 @@ const HomeScreen = ({navigation}) => {
           <Text style={styles.h3black}>Hi,</Text>
           <Text style={styles.h1bold}>Kafka</Text>
         </View>
-        <View style={{position: 'absolute', right: (WW * 1) / 100}}>
+        <View style={{position: 'absolute', right: (WW * 0.5) / 100}}>
           <View style={{flexDirection: 'row'}}>
             <TouchableOpacity
               onPress={() => {
@@ -58,6 +58,13 @@ const HomeScreen = ({navigation}) => {
                 navigation.navigate('Notifications');
               }}>
               <IconMC name="bell-outline" size={35} color="#000000" />
+            </TouchableOpacity>
+            <View style={{marginHorizontal: (WW * 1) / 100}} />
+            <TouchableOpacity
+              onPress={() => {
+                navigation.navigate('Notifications');
+              }}>
+              <IconMC name="logout-variant" size={35} color="#000000" />
             </TouchableOpacity>
           </View>
         </View>

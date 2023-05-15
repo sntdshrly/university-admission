@@ -270,4 +270,16 @@ export const styles = StyleSheet.create({
     borderColor: '#ccc',
     backgroundColor: '#579EF1',
   },
+  containerLoading: {
+    borderColor: '#579EF1',
+    borderWidth: 2,
+    elevation: 3,
+    width: (WW * 50) / 100,
+    height: (WH * 15) / 100,
+    justifyContent: 'center',
+    alignItems: 'center',
+    alignSelf: 'center',
+    backgroundColor: '#ffffff',
+    borderRadius: 10,
+  },
 });
