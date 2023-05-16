@@ -84,7 +84,9 @@ const RegisterScreen = ({navigation}) => {
 
         // console.log(profile.nama)
       })
-      .catch(err => console.warn(err));
+      .catch(err => {
+        console.log(err), setLoading(false);
+      });
   };
 
   const isLoader = () => {
