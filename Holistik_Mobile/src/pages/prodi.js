@@ -24,8 +24,11 @@ const WH = Dimensions.get('window').height;
 const ProdiScreen = ({navigation}) => {
   const [searchQuery, setSearchQuery] = React.useState('');
   const [ProdiList, setProdiList] = useState([]);
+  const [JurusanList, setJurusanList] = useState([]);
   const [FilteredProdiList, setFilteredProdiList] = useState([]);
   const [Loading, setLoading] = useState(false);
+  const [ProgressBarIndex, setProgressBarIndex] = useState(0.3);
+  const [clickCount, setClickCount] = useState(0);
 
   useEffect(() => {
     FetchProdi();
@@ -37,7 +40,7 @@ const ProdiScreen = ({navigation}) => {
       setFilteredProdiList(ProdiList);
     } else {
       const filteredList = ProdiList.filter(program =>
-        program.toLowerCase().includes(query.toLowerCase()),
+        program.name.toLowerCase().includes(query.toLowerCase()),
       );
       setFilteredProdiList(filteredList);
     }
@@ -50,7 +53,14 @@ const ProdiScreen = ({navigation}) => {
   };
 
   const handleItemPress = () => {
-    navigation.navigate('ScoreScreen');
+    if (clickCount % 2 == 0) {
+      setProgressBarIndex(0.5);
+    } else if (clickCount % 2 == 1) {
+      setProgressBarIndex(0.3);
+    }
+    // Add more conditions for subsequent clicks
+
+    setClickCount(clickCount + 1);
   };
 
   const isLoader = () => {
@@ -87,7 +97,9 @@ const ProdiScreen = ({navigation}) => {
         const retval = res.data.success;
         if (retval) {
           setLoading(false);
-          const studyPrograms = res.data.data.map(item => item.name).flat();
+          const studyPrograms = res.data.data.flat();
+          // console.log(res.data.data[0].study_programs[0].name);
+
           setProdiList(studyPrograms);
           setFilteredProdiList(studyPrograms);
         } else {
@@ -114,7 +126,7 @@ const ProdiScreen = ({navigation}) => {
       </TouchableOpacity>
       <View style={{flexDirection: 'row', alignItems: 'center'}}>
         <View style={{marginHorizontal: (WW * 2) / 100}}>
-          <Text style={styles.h1white}>Pilih Prodi Anda</Text>
+          <Text style={styles.h1white}>Pilih Prodi & Jurusan</Text>
         </View>
       </View>
       <View style={styles.basehome_pageprodi}>
@@ -133,20 +145,25 @@ const ProdiScreen = ({navigation}) => {
             inputStyle={styles.h3white}
             iconColor="#ffffff"
           />
-
-          <List.Section>
-            <List.Subheader>Pilihan Program Studi</List.Subheader>
+          <List.Section title="Pilihan Program Studi & Jurusan">
             {FilteredProdiList.map((program, index) => (
-              <List.Item
+              <List.Accordion
                 key={index}
-                title={program}
+                title={program.name}
                 left={() => <List.Icon icon="book-education-outline" />}
-                onPress={handleItemPress}
-              />
+                onPress={handleItemPress}>
+                {program.study_programs.map((program1, index1) => (
+                  <List.Item
+                    title={program1.name}
+                    key={index1}
+                    left={() => <List.Icon icon="book-education" />}
+                  />
+                ))}
+              </List.Accordion>
             ))}
           </List.Section>
         </ScrollView>
-        <ProgressBar progress={0.3} color={'#579EF1'} />
+        <ProgressBar progress={ProgressBarIndex} color={'#579EF1'} />
       </View>
     </View>
   );
