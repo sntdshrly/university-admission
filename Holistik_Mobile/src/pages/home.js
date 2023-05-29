@@ -8,10 +8,12 @@ import {
   Dimensions,
   TouchableOpacity,
   ActivityIndicator,
+  Alert,
+  Modal,
 } from 'react-native';
 import {styles} from '../style/styleGlobal';
 import IconMC from 'react-native-vector-icons/MaterialCommunityIcons';
-
+import Service from '../helper/service';
 const WW = Dimensions.get('window').width;
 const WH = Dimensions.get('window').height;
 
@@ -19,13 +21,84 @@ const HomeScreen = ({navigation}) => {
   const [ShowDaftar, setShowDaftar] = useState(false);
   const [Lulus, setLulus] = useState(false);
   const [checkloading, setCheckLoading] = useState(true);
+  const [Loading, setLoading] = useState(false);
+  const [Email, setEmail] = useState('');
 
-  useEffect(() => {}, [navigation]);
+  useEffect(() => {
+    userProfile();
+  }, [navigation]);
 
   const checkLulus = () => {
     setTimeout(() => {
       setCheckLoading(false);
     }, 2000);
+  };
+
+  const isLoader = () => {
+    return (
+      <Modal
+        transparent={true}
+        visible={Loading}
+        onRequestClose={() => {
+          setLoading(false);
+        }}>
+        <View
+          style={{
+            justifyContent: 'center',
+            alignItems: 'center',
+            flex: 1,
+          }}>
+          <View style={styles.containerLoading}>
+            <ActivityIndicator size={(WW * 10) / 100} color={'#579EF1'} />
+            <Text style={styles.h3black}>Loading... </Text>
+          </View>
+        </View>
+      </Modal>
+    );
+  };
+
+  const userProfile = () => {
+    setLoading(true);
+    const body = JSON.stringify({});
+    Service.DefaultGET(
+      'https://holistik.it.maranatha.edu/api/user-profile',
+      body,
+    )
+      .then(res => {
+        const retval = res.data.success;
+        console.log(retval);
+        if (retval) {
+          setEmail(res.data.message);
+          setLoading(false);
+          // navigation.replace('StartScreen');
+        } else {
+          setLoading(false);
+          Alert.alert('Gagal', 'Silahkan Coba Lagi');
+        }
+      })
+      .catch(err => {
+        console.log(err), setLoading(false);
+      });
+  };
+
+  const logout = () => {
+    setLoading(true);
+    const body = JSON.stringify({});
+    Service.Default('https://holistik.it.maranatha.edu/api/logout', body)
+      .then(res => {
+        const retval = res.data.success;
+        console.log(retval);
+        if (retval) {
+          setLoading(false);
+          navigation.replace('StartScreen');
+        } else {
+          setLoading(false);
+          Alert.alert('Gagal', 'Silahkan Coba Lagi');
+        }
+      })
+      .catch(err => {
+        console.log(err), setLoading(false);
+      });
   };
 
   return (
@@ -38,11 +111,12 @@ const HomeScreen = ({navigation}) => {
         padding: (WW * 7) / 100,
         flex: 1,
       }}>
+      {isLoader()}
       <View style={{flexDirection: 'row', alignItems: 'center'}}>
         <IconMC name="atom" size={60} color="grey" />
         <View style={{marginHorizontal: (WW * 2) / 100}}>
           <Text style={styles.h3black}>Hi,</Text>
-          <Text style={styles.h1bold}>Kafka</Text>
+          <Text style={styles.h1bold}>{Email}</Text>
         </View>
         <View style={{position: 'absolute', right: (WW * 0.5) / 100}}>
           <View style={{flexDirection: 'row'}}>
@@ -62,7 +136,7 @@ const HomeScreen = ({navigation}) => {
             <View style={{marginHorizontal: (WW * 1) / 100}} />
             <TouchableOpacity
               onPress={() => {
-                navigation.navigate('Notifications');
+                logout();
               }}>
               <IconMC name="logout-variant" size={35} color="#000000" />
             </TouchableOpacity>

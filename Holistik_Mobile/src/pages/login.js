@@ -1,4 +1,4 @@
-import React, {useEffect, useContext} from 'react';
+import React, {useEffect, useContext, useState} from 'react';
 import {
   View,
   Image,
@@ -7,19 +7,83 @@ import {
   Text,
   Dimensions,
   TextInput,
+  Modal,
+  ActivityIndicator,
+  Alert,
 } from 'react-native';
 import {TouchableOpacity} from 'react-native-gesture-handler';
 import {styles} from '../style/styleGlobal';
 import IconMC from 'react-native-vector-icons/MaterialCommunityIcons';
+import Service from '../helper/service';
 
 const WW = Dimensions.get('window').width;
 const WH = Dimensions.get('window').height;
 
 const LoginScreen = ({navigation}) => {
+  const [Email, setEmail] = useState('');
+  const [Password, setPassword] = useState('');
+  const [Loading, setLoading] = useState(false);
+
   useEffect(() => {}, []);
+
+  const isLoader = () => {
+    return (
+      <Modal
+        transparent={true}
+        visible={Loading}
+        onRequestClose={() => {
+          setLoading(false);
+        }}>
+        <View
+          style={{
+            justifyContent: 'center',
+            alignItems: 'center',
+            flex: 1,
+          }}>
+          <View style={styles.containerLoading}>
+            <ActivityIndicator size={(WW * 10) / 100} color={'#579EF1'} />
+            <Text style={styles.h3black}>Loading... </Text>
+          </View>
+        </View>
+      </Modal>
+    );
+  };
+
+  const CheckLogin = () => {
+    if (Password.length == 0 || Email.length == 0) {
+      Alert.alert('Info', 'Silahkan Masukkan Data Yang Masih Kosong');
+    } else {
+      Login();
+    }
+  };
+
+  const Login = () => {
+    setLoading(true);
+    const body = JSON.stringify({
+      email: Email,
+      password: Password,
+    });
+    Service.Default('https://holistik.it.maranatha.edu/api/login', body)
+      .then(res => {
+        const retval = res.data.success;
+        console.log(retval);
+        if (retval) {
+          setLoading(false);
+          navigation.replace('HomeScreen');
+        } else {
+          setLoading(false);
+          Alert.alert('Gagal', 'Silahkan Coba Lagi');
+        }
+      })
+      .catch(err => {
+        console.log(err), setLoading(false);
+      });
+  };
 
   return (
     <View style={styles.container}>
+      {isLoader()}
+
       <TouchableOpacity
         onPress={() => {
           navigation.navigate('StartScreen');
@@ -31,16 +95,16 @@ const LoginScreen = ({navigation}) => {
       <TextInput
         style={styles.inputEmail}
         placeholder={'Email Address'}
-        // onChangeText={(text) => handleValidation(text)}
-        // value={value}
+        onChangeText={email => setEmail(email)}
+        value={Email}
         // secureTextEntry={secureTextEntry}
         keyboardType="email-address"
       />
       <TextInput
         style={styles.inputEmail}
         placeholder={'Password'}
-        // onChangeText={(text) => handleValidation(text)}
-        // value={value}
+        onChangeText={password => setPassword(password)}
+        value={Password}
         secureTextEntry={true}
         keyboardType="default"
       />
@@ -48,7 +112,7 @@ const LoginScreen = ({navigation}) => {
       <TouchableOpacity
         style={styles.buttonLogin}
         onPress={() => {
-          navigation.navigate('HomeScreen');
+          CheckLogin();
         }}>
         <Text style={styles.h2white}>Login</Text>
       </TouchableOpacity>
