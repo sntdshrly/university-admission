@@ -56,7 +56,10 @@ const RegisterScreen = ({navigation}) => {
       password: Password,
       name: Username,
     });
-    Service.Default('https://holistik.it.maranatha.edu/api/users/store', body)
+    Service.DefaultnonToken(
+      'https://holistik.it.maranatha.edu/api/users/store',
+      body,
+    )
       .then(res => {
         const retval = res.data.success;
         console.log(retval);

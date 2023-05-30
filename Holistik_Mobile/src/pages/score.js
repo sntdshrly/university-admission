@@ -35,7 +35,7 @@ const ScoreScreen = ({navigation}) => {
     <View style={styles.container_blue}>
       <TouchableOpacity
         onPress={() => {
-          navigation.navigate('ProdiScreen');
+          navigation.navigate('HomeScreen');
         }}>
         <IconMC name="arrow-left-thick" size={35} color="#ffffff" />
       </TouchableOpacity>
@@ -70,15 +70,94 @@ const ScoreScreen = ({navigation}) => {
             secureTextEntry={true}
             keyboardType="default"
           />
-          <TouchableOpacity
-            style={styles.buttonLogin}
-            onPress={() => {
-              navigation.navigate('HomeScreen');
-            }}>
-            <Text style={styles.h2white}>Submit</Text>
-          </TouchableOpacity>
+          <TextInput
+            style={styles.inputEmail}
+            placeholder={'Nilai Fisika'}
+            // onChangeText={(text) => handleValidation(text)}
+            // value={value}
+            secureTextEntry={true}
+            keyboardType="default"
+          />
+          <TextInput
+            style={styles.inputEmail}
+            placeholder={'Nilai Kimia'}
+            // onChangeText={(text) => handleValidation(text)}
+            // value={value}
+            secureTextEntry={true}
+            keyboardType="default"
+          />
+          <TextInput
+            style={styles.inputEmail}
+            placeholder={'Nilai Biologi'}
+            // onChangeText={(text) => handleValidation(text)}
+            // value={value}
+            secureTextEntry={true}
+            keyboardType="default"
+          />
+          <TextInput
+            style={styles.inputEmail}
+            placeholder={'Nilai Ekonomi'}
+            // onChangeText={(text) => handleValidation(text)}
+            // value={value}
+            secureTextEntry={true}
+            keyboardType="default"
+          />
+          <TextInput
+            style={styles.inputEmail}
+            placeholder={'Nilai Geografi'}
+            // onChangeText={(text) => handleValidation(text)}
+            // value={value}
+            secureTextEntry={true}
+            keyboardType="default"
+          />
+          <TextInput
+            style={styles.inputEmail}
+            placeholder={'Nilai Sosiologi'}
+            // onChangeText={(text) => handleValidation(text)}
+            // value={value}
+            secureTextEntry={true}
+            keyboardType="default"
+          />
+          <TextInput
+            style={styles.inputEmail}
+            placeholder={'Nilai Bahasa Mandarin'}
+            // onChangeText={(text) => handleValidation(text)}
+            // value={value}
+            secureTextEntry={true}
+            keyboardType="default"
+          />
+          <TextInput
+            style={styles.inputEmail}
+            placeholder={'Nilai Bahasa Jepang'}
+            // onChangeText={(text) => handleValidation(text)}
+            // value={value}
+            secureTextEntry={true}
+            keyboardType="default"
+          />
+          <TextInput
+            style={styles.inputEmail}
+            placeholder={'Nilai Bahasa Korea'}
+            // onChangeText={(text) => handleValidation(text)}
+            // value={value}
+            secureTextEntry={true}
+            keyboardType="default"
+          />
+          <TextInput
+            style={styles.inputEmail}
+            placeholder={'Nilai Bahasa Jerman'}
+            // onChangeText={(text) => handleValidation(text)}
+            // value={value}
+            secureTextEntry={true}
+            keyboardType="default"
+          />
         </ScrollView>
-        <ProgressBar progress={0.7} color={'#579EF1'} />
+        <TouchableOpacity
+          style={styles.buttonLogin}
+          onPress={() => {
+            navigation.navigate('HomeScreen');
+          }}>
+          <Text style={styles.h2white}>Submit</Text>
+        </TouchableOpacity>
       </View>
     </View>
   );

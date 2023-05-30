@@ -14,6 +14,9 @@ import {
 import {styles} from '../style/styleGlobal';
 import IconMC from 'react-native-vector-icons/MaterialCommunityIcons';
 import Service from '../helper/service';
+import AsyncStorage from '@react-native-async-storage/async-storage';
+import axios from 'axios';
+
 const WW = Dimensions.get('window').width;
 const WH = Dimensions.get('window').height;
 
@@ -22,11 +25,25 @@ const HomeScreen = ({navigation}) => {
   const [Lulus, setLulus] = useState(false);
   const [checkloading, setCheckLoading] = useState(true);
   const [Loading, setLoading] = useState(false);
-  const [Email, setEmail] = useState('');
+  const [EmailData, setEmailData] = useState('');
 
   useEffect(() => {
+    // FetchStorage();
+
     userProfile();
   }, [navigation]);
+
+  const FetchStorage = async () => {
+    try {
+      const value = await AsyncStorage.getItem('@userData');
+      // console.log(value);
+      const parsedArray = JSON.parse(value);
+      setEmailData(parsedArray);
+      // console.log('Retrieved array value:', parsedArray);
+    } catch (error) {
+      console.log('Error retrieving array value:', error);
+    }
+  };
 
   const checkLulus = () => {
     setTimeout(() => {
@@ -57,18 +74,16 @@ const HomeScreen = ({navigation}) => {
     );
   };
 
-  const userProfile = () => {
+  const userProfile = async () => {
     setLoading(true);
-    const body = JSON.stringify({});
-    Service.DefaultGET(
+    Service.DefaultGETnoBody(
       'https://holistik.it.maranatha.edu/api/user-profile',
-      body,
     )
       .then(res => {
         const retval = res.data.success;
-        console.log(retval);
+        // console.log(retval);
         if (retval) {
-          setEmail(res.data.message);
+          setEmailData(res.data.data.userDetail);
           setLoading(false);
           // navigation.replace('StartScreen');
         } else {
@@ -85,11 +100,12 @@ const HomeScreen = ({navigation}) => {
     setLoading(true);
     const body = JSON.stringify({});
     Service.Default('https://holistik.it.maranatha.edu/api/logout', body)
-      .then(res => {
+      .then(async res => {
         const retval = res.data.success;
-        console.log(retval);
         if (retval) {
           setLoading(false);
+          await AsyncStorage.removeItem('@userData');
+          await AsyncStorage.removeItem('@Token');
           navigation.replace('StartScreen');
         } else {
           setLoading(false);
@@ -115,17 +131,16 @@ const HomeScreen = ({navigation}) => {
       <View style={{flexDirection: 'row', alignItems: 'center'}}>
         <IconMC name="atom" size={60} color="grey" />
         <View style={{marginHorizontal: (WW * 2) / 100}}>
-          <Text style={styles.h3black}>Hi,</Text>
-          <Text style={styles.h1bold}>{Email}</Text>
+          <Text style={styles.h1bold}>Hi,</Text>
+          <Text style={styles.h1bold}>{EmailData.name}</Text>
         </View>
-        <View style={{position: 'absolute', right: (WW * 0.5) / 100}}>
+        <View
+          style={{
+            position: 'absolute',
+            right: (WW * 0.5) / 100,
+            top: (WH * -1) / 100,
+          }}>
           <View style={{flexDirection: 'row'}}>
-            <TouchableOpacity
-              onPress={() => {
-                navigation.navigate('HistoryScreen');
-              }}>
-              <IconMC name="history" size={35} color="#000000" />
-            </TouchableOpacity>
             <View style={{marginHorizontal: (WW * 1) / 100}} />
             <TouchableOpacity
               onPress={() => {
@@ -190,12 +205,13 @@ const HomeScreen = ({navigation}) => {
         <TouchableOpacity
           style={styles.basehomecard}
           onPress={() => {
-            setShowDaftar(!ShowDaftar);
-            checkLulus();
-            setCheckLoading(true);
-            setLulus(Math.random() >= 0.5);
+            // setShowDaftar(!ShowDaftar);
+            // checkLulus();
+            // setCheckLoading(true);
+            // setLulus(Math.random() >= 0.5);
+            navigation.navigate('ScoreScreen');
           }}>
-          <Text style={styles.h3white}>Pendaftaran Reguler -Genap</Text>
+          <Text style={styles.h3white}>Input Nilai</Text>
 
           <Image
             source={require('../assets/books.png')}
@@ -206,7 +222,7 @@ const HomeScreen = ({navigation}) => {
           onPress={() => {
             navigation.navigate('ProdiScreen');
           }}>
-          <Text style={styles.h3white}>Pendaftaran Reguler -Ganjil</Text>
+          <Text style={styles.h3white}>Pendaftaran </Text>
 
           <Image
             source={require('../assets/books.png')}

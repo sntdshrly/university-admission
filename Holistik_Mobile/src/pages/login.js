@@ -15,13 +15,14 @@ import {TouchableOpacity} from 'react-native-gesture-handler';
 import {styles} from '../style/styleGlobal';
 import IconMC from 'react-native-vector-icons/MaterialCommunityIcons';
 import Service from '../helper/service';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 const WW = Dimensions.get('window').width;
 const WH = Dimensions.get('window').height;
 
 const LoginScreen = ({navigation}) => {
-  const [Email, setEmail] = useState('');
-  const [Password, setPassword] = useState('');
+  const [Email, setEmail] = useState('avinash11@gmail.com');
+  const [Password, setPassword] = useState('12345678');
   const [Loading, setLoading] = useState(false);
 
   useEffect(() => {}, []);
@@ -63,12 +64,22 @@ const LoginScreen = ({navigation}) => {
       email: Email,
       password: Password,
     });
-    Service.Default('https://holistik.it.maranatha.edu/api/login', body)
-      .then(res => {
+    Service.DefaultnonToken('https://holistik.it.maranatha.edu/api/login', body)
+      .then(async res => {
         const retval = res.data.success;
-        console.log(retval);
+        // console.log(retval);
         if (retval) {
+          console.log(res.data.data.user);
           setLoading(false);
+          const valueJSON = JSON.stringify(res.data.data.user);
+          await AsyncStorage.setItem('@userData', valueJSON);
+          await AsyncStorage.setItem('@Token', res.data.data.access_token)
+            .then(() => {
+              console.log('JSON object saved successfully.');
+            })
+            .catch(error => {
+              console.log('Error saving JSON object:', error);
+            });
           navigation.replace('HomeScreen');
         } else {
           setLoading(false);

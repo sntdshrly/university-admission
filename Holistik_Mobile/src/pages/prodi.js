@@ -89,7 +89,7 @@ const ProdiScreen = ({navigation}) => {
   const FetchProdi = () => {
     setLoading(true);
     const body = JSON.stringify();
-    Service.DefaultGET(
+    Service.DefaultGETnoBody(
       'https://holistik.it.maranatha.edu/api/faculties/fetch',
       body,
     )
