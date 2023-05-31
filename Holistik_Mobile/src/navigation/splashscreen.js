@@ -35,13 +35,13 @@ const SplashScreen = ({navigation}) => {
 
   useEffect(() => {
     const timer = setTimeout(() => {
-      navigation.replace('StartScreen');
+      // navigation.replace('StartScreen');
 
-      // if (EmailData) {
-      //   navigation.replace('StartScreen');
-      // } else {
-      //   navigation.replace('HomeScreen');
-      // }
+      if (EmailData) {
+        navigation.replace('StartScreen');
+      } else {
+        navigation.replace('HomeScreen');
+      }
     }, 1000); // change this to the amount of time you want your splash screen to be displayed
 
     return () => clearTimeout(timer);
