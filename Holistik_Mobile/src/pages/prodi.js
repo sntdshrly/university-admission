@@ -88,10 +88,9 @@ const ProdiScreen = ({navigation}) => {
 
   const FetchProdi = () => {
     setLoading(true);
-    const body = JSON.stringify();
     Service.DefaultGETnoBody(
       'https://holistik.it.maranatha.edu/api/faculties/fetch',
-      body,
+      navigation,
     )
       .then(res => {
         const retval = res.data.success;

@@ -35,8 +35,6 @@ const SplashScreen = ({navigation}) => {
 
   useEffect(() => {
     const timer = setTimeout(() => {
-      // navigation.replace('StartScreen');
-
       if (EmailData) {
         navigation.replace('StartScreen');
       } else {

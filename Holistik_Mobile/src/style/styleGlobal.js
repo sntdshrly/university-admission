@@ -302,13 +302,11 @@ export const styles = StyleSheet.create({
     borderWidth: 1,
     borderColor: '#ccc',
     borderRadius: 4,
-    paddingHorizontal: 8,
+    textAlign: 'center',
   },
   boxScore: {
     width: (WW * 15) / 100,
-    height: (WW * 7) / 100,
-    justifyContent: 'center',
-    alignItems: 'center',
+    height: (WW * 10) / 100,
   },
   buttonScore: {
     backgroundColor: color.blackStr,

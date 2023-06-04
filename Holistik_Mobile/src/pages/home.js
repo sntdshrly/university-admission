@@ -78,6 +78,7 @@ const HomeScreen = ({navigation}) => {
     setLoading(true);
     Service.DefaultGETnoBody(
       'https://holistik.it.maranatha.edu/api/user-profile',
+      navigation,
     )
       .then(res => {
         const retval = res.data.success;

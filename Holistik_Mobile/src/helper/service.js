@@ -26,11 +26,11 @@ export default {
         .post(defaultLink, body, config)
         .then(response => {
           resolve(response);
-          // console.log('response : ', response.data);
+          console.log('response : ', response.data);
         })
         .catch(error => {
           const originalRequest = error.config;
-          // console.log(originalRequest);
+          console.log(originalRequest);
 
           if (error.response == undefined) {
             Alert.alert('Error', 'Request Service Timeout..', [
@@ -79,7 +79,7 @@ export default {
     return instance;
   },
 
-  DefaultGETnoBody: async function (link) {
+  DefaultGETnoBody: async function (link, navigation) {
     const defaultLink = link;
     const Token = await AsyncStorage.getItem('@Token');
     // console.log('Bearer' + Token);
@@ -103,7 +103,7 @@ export default {
         })
         .catch(error => {
           const originalRequest = error.config;
-          // console.log(originalRequest);
+          console.log(error.message);
 
           if (error.response == undefined) {
             Alert.alert('Error', 'Request Service Timeout..', [
@@ -125,6 +125,16 @@ export default {
             ]);
 
             reject();
+          } else if (error.message == 'Request failed with status code 401') {
+            Alert.alert('Sesi Berakhir', 'Silahkan Login Ulang', [
+              ({text: 'Cancel'},
+              {
+                text: 'OK',
+                onPress: () => {
+                  navigation.replace('StartScreen');
+                },
+              }),
+            ]);
           } else {
             Alert.alert('Error ' + defaultLink, error.message, [
               {text: 'Cancel'},

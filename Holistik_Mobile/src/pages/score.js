@@ -12,6 +12,7 @@ import {
   KeyboardAvoidingView,
   TextInput,
   Alert,
+  Modal,
 } from 'react-native';
 import {styles} from '../style/styleGlobal';
 import IconMC from 'react-native-vector-icons/MaterialCommunityIcons';
@@ -23,6 +24,8 @@ import {
   DataTable,
 } from 'react-native-paper';
 import {Picker} from '@react-native-picker/picker';
+import AsyncStorage from '@react-native-async-storage/async-storage';
+import Service from '../helper/service';
 
 const WW = Dimensions.get('window').width;
 const WH = Dimensions.get('window').height;
@@ -95,12 +98,234 @@ const ScoreScreen = ({navigation}) => {
   const [bahasaJerman_Genap, setBahasaJerman_Genap] = useState('');
   const [bahasaJerman_Ganjil, setBahasaJerman_Ganjil] = useState('');
 
-  useEffect(() => {}, [navigation]);
+  const [Loading, setLoading] = useState(false);
 
-  const onChangeSearch = query => setSearchQuery(query);
+  const [EmailData, setEmailData] = useState('');
 
-  const handleItemPress = () => {
-    navigation.navigate('ScoreScreen');
+  useEffect(() => {
+    FetchStorage();
+  }, [navigation]);
+
+  const FetchStorage = async () => {
+    try {
+      const value = await AsyncStorage.getItem('@userData');
+      console.log(value);
+      const parsedArray = JSON.parse(value);
+      setEmailData(parsedArray);
+      // console.log('Retrieved array value:', parsedArray);
+    } catch (error) {
+      console.log('Error retrieving array value:', error);
+    }
+  };
+
+  const isLoader = () => {
+    return (
+      <Modal
+        transparent={true}
+        visible={Loading}
+        onRequestClose={() => {
+          setLoading(false);
+        }}>
+        <View
+          style={{
+            justifyContent: 'center',
+            alignItems: 'center',
+            flex: 1,
+          }}>
+          <View style={styles.containerLoading}>
+            <ActivityIndicator size={(WW * 10) / 100} color={'#579EF1'} />
+            <Text style={styles.h3black}>Loading... </Text>
+          </View>
+        </View>
+      </Modal>
+    );
+  };
+
+  const storeGrades = () => {
+    setLoading(true);
+    console.log(matematika_Ganjil);
+
+    const body = JSON.stringify({
+      data: [
+        {
+          subject_name: 'Matematika',
+          semester: 'Ganjil',
+          value: matematika_Ganjil,
+          kkm: matematika_KKMGanjil,
+        },
+        {
+          subject_name: 'Matematika',
+          semester: 'Genap',
+          value: matematika_Genap,
+          kkm: matematika_KKMGenap,
+        },
+        {
+          subject_name: 'Bahasa Indonesia',
+          semester: 'Ganjil',
+          value: bahasaIndonesia_Ganjil,
+          kkm: bahasaIndonesia_KKMGanjil,
+        },
+        {
+          subject_name: 'Bahasa Indonesia',
+          semester: 'Genap',
+          value: bahasaIndonesia_Genap,
+          kkm: bahasaIndonesia_KKMGenap,
+        },
+        {
+          subject_name: 'Bahasa Inggris',
+          semester: 'Ganjil',
+          value: bahasaInggris_Ganjil,
+          kkm: bahasaInggris_KKMGanjil,
+        },
+        {
+          subject_name: 'Bahasa Inggris',
+          semester: 'Genap',
+          value: bahasaInggris_Genap,
+          kkm: bahasaInggris_KKMGenap,
+        },
+        {
+          subject_name: 'Fisika',
+          semester: 'Ganjil',
+          value: fisika_Ganjil,
+          kkm: fisika_KKMGanjil,
+        },
+        {
+          subject_name: 'Fisika',
+          semester: 'Genap',
+          value: fisika_Genap,
+          kkm: fisika_KKMGenap,
+        },
+        {
+          subject_name: 'Kimia',
+          semester: 'Ganjil',
+          value: kimia_Ganjil,
+          kkm: kimia_KKMGanjil,
+        },
+        {
+          subject_name: 'Kimia',
+          semester: 'Genap',
+          value: kimia_Genap,
+          kkm: kimia_KKMGenap,
+        },
+        {
+          subject_name: 'Biologi',
+          semester: 'Ganjil',
+          value: biologi_Ganjil,
+          kkm: biologi_KKMGanjil,
+        },
+        {
+          subject_name: 'Biologi',
+          semester: 'Genap',
+          value: biologi_Genap,
+          kkm: biologi_KKMGenap,
+        },
+        {
+          subject_name: 'Ekonomi',
+          semester: 'Ganjil',
+          value: ekonomi_Ganjil,
+          kkm: ekonomi_KKMGanjil,
+        },
+        {
+          subject_name: 'Ekonomi',
+          semester: 'Genap',
+          value: ekonomi_Genap,
+          kkm: ekonomi_KKMGenap,
+        },
+        {
+          subject_name: 'Geografi',
+          semester: 'Ganjil',
+          value: geografi_Ganjil,
+          kkm: geografi_KKMGanjil,
+        },
+        {
+          subject_name: 'Geografi',
+          semester: 'Genap',
+          value: geografi_Genap,
+          kkm: geografi_KKMGenap,
+        },
+        {
+          subject_name: 'Sosiologi',
+          semester: 'Ganjil',
+          value: sosiologi_Ganjil,
+          kkm: sosiologi_KKMGanjil,
+        },
+        {
+          subject_name: 'Sosiologi',
+          semester: 'Genap',
+          value: sosiologi_Genap,
+          kkm: sosiologi_KKMGenap,
+        },
+        {
+          subject_name: 'Bahasa Mandarin',
+          semester: 'Ganjil',
+          value: bahasaMandarin_Ganjil,
+          kkm: bahasaMandarin_KKMGanjil,
+        },
+        {
+          subject_name: 'Bahasa Mandarin',
+          semester: 'Genap',
+          value: bahasaMandarin_Genap,
+          kkm: bahasaMandarin_KKMGenap,
+        },
+        {
+          subject_name: 'Bahasa Jepang',
+          semester: 'Ganjil',
+          value: bahasaJepang_Ganjil,
+          kkm: bahasaJepang_KKMGanjil,
+        },
+        {
+          subject_name: 'Bahasa Jepang',
+          semester: 'Genap',
+          value: bahasaJepang_Genap,
+          kkm: bahasaJepang_KKMGenap,
+        },
+        {
+          subject_name: 'Bahasa Korea',
+          semester: 'Ganjil',
+          value: bahasaKorea_Ganjil,
+          kkm: bahasaKorea_KKMGanjil,
+        },
+        {
+          subject_name: 'Bahasa Korea',
+          semester: 'Genap',
+          value: bahasaKorea_Genap,
+          kkm: bahasaKorea_KKMGenap,
+        },
+        {
+          subject_name: 'Bahasa Jerman',
+          semester: 'Ganjil',
+          value: bahasaJerman_Ganjil,
+          kkm: bahasaJerman_KKMGanjil,
+        },
+        {
+          subject_name: 'Bahasa Jerman',
+          semester: 'Genap',
+          value: bahasaJerman_Genap,
+          kkm: bahasaJerman_KKMGenap,
+        },
+      ],
+    });
+
+    Service.Default(
+      'https://holistik.it.maranatha.edu/api/grades/' + EmailData.id + '/store',
+      body,
+    )
+      .then(res => {
+        const retval = res.data.success;
+        // console.log(retval);
+        if (retval) {
+          // setEmailData(res.data.data.userDetail);
+          setLoading(false);
+          Alert.alert('Berhasil', 'Data Berhasil Disimpan');
+          // navigation.replace('StartScreen');
+        } else {
+          setLoading(false);
+          Alert.alert('Gagal', 'Silahkan Coba Lagi');
+        }
+      })
+      .catch(err => {
+        console.log(err), setLoading(false);
+      });
   };
 
   const checknilai = () => {
@@ -159,6 +384,8 @@ const ScoreScreen = ({navigation}) => {
       bahasaJerman_Ganjil === ''
     ) {
       Alert.alert('Info', 'Silahkan Mengisi Data Yang Masih Kosong');
+    } else {
+      storeGrades();
     }
   };
 
@@ -176,6 +403,7 @@ const ScoreScreen = ({navigation}) => {
         </View>
       </View>
       <View style={styles.basehome_pageprodi}>
+        {isLoader()}
         <ScrollView>
           <View>
             <View style={styles.tableRow}>
@@ -204,6 +432,7 @@ const ScoreScreen = ({navigation}) => {
                 <TextInput
                   style={styles.inputCell}
                   value={matematika_KKMGanjil}
+                  keyboardType="numeric"
                   onChangeText={value => {
                     setMatematika_KKMGanjil(value);
                   }}
@@ -214,6 +443,7 @@ const ScoreScreen = ({navigation}) => {
                   <TextInput
                     style={styles.inputCell}
                     value={matematika_Ganjil}
+                    keyboardType="numeric"
                     onChangeText={value => {
                       setMatematika_Ganjil(value);
                     }}
@@ -225,6 +455,7 @@ const ScoreScreen = ({navigation}) => {
                   <TextInput
                     style={styles.inputCell}
                     value={matematika_KKMGenap}
+                    keyboardType="numeric"
                     onChangeText={value => {
                       setMatematika_KKMGenap(value);
                     }}
@@ -235,7 +466,8 @@ const ScoreScreen = ({navigation}) => {
                 <View style={styles.boxScore}>
                   <TextInput
                     style={styles.inputCell}
-                    value={matematika_Ganjil}
+                    value={matematika_Genap}
+                    keyboardType="numeric"
                     onChangeText={value => {
                       setMatematika_Genap(value);
                     }}
@@ -251,6 +483,7 @@ const ScoreScreen = ({navigation}) => {
                 <TextInput
                   style={styles.inputCell}
                   value={bahasaIndonesia_KKMGanjil}
+                  keyboardType="numeric"
                   onChangeText={value => {
                     setBahasaIndonesia_KKMGanjil(value);
                   }}
@@ -261,6 +494,7 @@ const ScoreScreen = ({navigation}) => {
                   <TextInput
                     style={styles.inputCell}
                     value={bahasaIndonesia_Ganjil}
+                    keyboardType="numeric"
                     onChangeText={value => {
                       setBahasaIndonesia_Ganjil(value);
                     }}
@@ -272,6 +506,7 @@ const ScoreScreen = ({navigation}) => {
                   <TextInput
                     style={styles.inputCell}
                     value={bahasaIndonesia_KKMGenap}
+                    keyboardType="numeric"
                     onChangeText={value => {
                       setBahasaIndonesia_KKMGenap(value);
                     }}
@@ -283,6 +518,7 @@ const ScoreScreen = ({navigation}) => {
                   <TextInput
                     style={styles.inputCell}
                     value={bahasaIndonesia_Genap}
+                    keyboardType="numeric"
                     onChangeText={value => {
                       setBahasaIndonesia_Genap(value);
                     }}
@@ -299,6 +535,7 @@ const ScoreScreen = ({navigation}) => {
                 <TextInput
                   style={styles.inputCell}
                   value={bahasaInggris_KKMGanjil}
+                  keyboardType="numeric"
                   onChangeText={value => {
                     setBahasaInggris_KKMGanjil(value);
                   }}
@@ -309,6 +546,7 @@ const ScoreScreen = ({navigation}) => {
                   <TextInput
                     style={styles.inputCell}
                     value={bahasaInggris_Ganjil}
+                    keyboardType="numeric"
                     onChangeText={value => {
                       setBahasaInggris_Ganjil(value);
                     }}
@@ -320,6 +558,7 @@ const ScoreScreen = ({navigation}) => {
                   <TextInput
                     style={styles.inputCell}
                     value={bahasaInggris_KKMGenap}
+                    keyboardType="numeric"
                     onChangeText={value => {
                       setBahasaInggris_KKMGenap(value);
                     }}
@@ -331,6 +570,7 @@ const ScoreScreen = ({navigation}) => {
                   <TextInput
                     style={styles.inputCell}
                     value={bahasaInggris_Genap}
+                    keyboardType="numeric"
                     onChangeText={value => {
                       setBahasaInggris_Genap(value);
                     }}
@@ -346,6 +586,7 @@ const ScoreScreen = ({navigation}) => {
                 <TextInput
                   style={styles.inputCell}
                   value={fisika_KKMGanjil}
+                  keyboardType="numeric"
                   onChangeText={value => {
                     setFisika_KKMGanjil(value);
                   }}
@@ -356,6 +597,7 @@ const ScoreScreen = ({navigation}) => {
                   <TextInput
                     style={styles.inputCell}
                     value={fisika_Ganjil}
+                    keyboardType="numeric"
                     onChangeText={value => {
                       setFisika_Ganjil(value);
                     }}
@@ -367,6 +609,7 @@ const ScoreScreen = ({navigation}) => {
                   <TextInput
                     style={styles.inputCell}
                     value={fisika_KKMGenap}
+                    keyboardType="numeric"
                     onChangeText={value => {
                       setFisika_KKMGenap(value);
                     }}
@@ -378,6 +621,7 @@ const ScoreScreen = ({navigation}) => {
                   <TextInput
                     style={styles.inputCell}
                     value={fisika_Genap}
+                    keyboardType="numeric"
                     onChangeText={value => {
                       setFisika_Genap(value);
                     }}
@@ -394,6 +638,7 @@ const ScoreScreen = ({navigation}) => {
                 <TextInput
                   style={styles.inputCell}
                   value={kimia_KKMGanjil}
+                  keyboardType="numeric"
                   onChangeText={value => {
                     setKimia_KKMGanjil(value);
                   }}
@@ -404,6 +649,7 @@ const ScoreScreen = ({navigation}) => {
                   <TextInput
                     style={styles.inputCell}
                     value={kimia_Ganjil}
+                    keyboardType="numeric"
                     onChangeText={value => {
                       setKimia_Ganjil(value);
                     }}
@@ -415,6 +661,7 @@ const ScoreScreen = ({navigation}) => {
                   <TextInput
                     style={styles.inputCell}
                     value={kimia_KKMGenap}
+                    keyboardType="numeric"
                     onChangeText={value => {
                       setKimia_KKMGenap(value);
                     }}
@@ -426,6 +673,7 @@ const ScoreScreen = ({navigation}) => {
                   <TextInput
                     style={styles.inputCell}
                     value={kimia_Genap}
+                    keyboardType="numeric"
                     onChangeText={value => {
                       setKimia_Genap(value);
                     }}
@@ -441,6 +689,7 @@ const ScoreScreen = ({navigation}) => {
                 <TextInput
                   style={styles.inputCell}
                   value={biologi_KKMGanjil}
+                  keyboardType="numeric"
                   onChangeText={value => {
                     setBiologi_KKMGanjil(value);
                   }}
@@ -451,6 +700,7 @@ const ScoreScreen = ({navigation}) => {
                   <TextInput
                     style={styles.inputCell}
                     value={biologi_Ganjil}
+                    keyboardType="numeric"
                     onChangeText={value => {
                       setBiologi_Ganjil(value);
                     }}
@@ -462,6 +712,7 @@ const ScoreScreen = ({navigation}) => {
                   <TextInput
                     style={styles.inputCell}
                     value={biologi_KKMGenap}
+                    keyboardType="numeric"
                     onChangeText={value => {
                       setBiologi_KKMGenap(value);
                     }}
@@ -473,6 +724,7 @@ const ScoreScreen = ({navigation}) => {
                   <TextInput
                     style={styles.inputCell}
                     value={biologi_Genap}
+                    keyboardType="numeric"
                     onChangeText={value => {
                       setBiologi_Genap(value);
                     }}
@@ -489,6 +741,7 @@ const ScoreScreen = ({navigation}) => {
                 <TextInput
                   style={styles.inputCell}
                   value={ekonomi_KKMGanjil}
+                  keyboardType="numeric"
                   onChangeText={value => {
                     setEkonomi_KKMGanjil(value);
                   }}
@@ -499,6 +752,7 @@ const ScoreScreen = ({navigation}) => {
                   <TextInput
                     style={styles.inputCell}
                     value={ekonomi_Ganjil}
+                    keyboardType="numeric"
                     onChangeText={value => {
                       setEkonomi_Ganjil(value);
                     }}
@@ -510,6 +764,7 @@ const ScoreScreen = ({navigation}) => {
                   <TextInput
                     style={styles.inputCell}
                     value={ekonomi_KKMGenap}
+                    keyboardType="numeric"
                     onChangeText={value => {
                       setEkonomi_KKMGenap(value);
                     }}
@@ -521,6 +776,7 @@ const ScoreScreen = ({navigation}) => {
                   <TextInput
                     style={styles.inputCell}
                     value={ekonomi_Genap}
+                    keyboardType="numeric"
                     onChangeText={value => {
                       setEkonomi_Genap(value);
                     }}
@@ -537,6 +793,7 @@ const ScoreScreen = ({navigation}) => {
                 <TextInput
                   style={styles.inputCell}
                   value={geografi_KKMGanjil}
+                  keyboardType="numeric"
                   onChangeText={value => {
                     setGeografi_KKMGanjil(value);
                   }}
@@ -547,6 +804,7 @@ const ScoreScreen = ({navigation}) => {
                   <TextInput
                     style={styles.inputCell}
                     value={geografi_Ganjil}
+                    keyboardType="numeric"
                     onChangeText={value => {
                       setGeografi_Ganjil(value);
                     }}
@@ -558,6 +816,7 @@ const ScoreScreen = ({navigation}) => {
                   <TextInput
                     style={styles.inputCell}
                     value={geografi_KKMGenap}
+                    keyboardType="numeric"
                     onChangeText={value => {
                       setGeografi_KKMGenap(value);
                     }}
@@ -569,6 +828,7 @@ const ScoreScreen = ({navigation}) => {
                   <TextInput
                     style={styles.inputCell}
                     value={geografi_Genap}
+                    keyboardType="numeric"
                     onChangeText={value => {
                       setGeografi_Genap(value);
                     }}
@@ -584,6 +844,7 @@ const ScoreScreen = ({navigation}) => {
                 <TextInput
                   style={styles.inputCell}
                   value={sosiologi_KKMGanjil}
+                  keyboardType="numeric"
                   onChangeText={value => {
                     setSosiologi_KKMGanjil(value);
                   }}
@@ -594,6 +855,7 @@ const ScoreScreen = ({navigation}) => {
                   <TextInput
                     style={styles.inputCell}
                     value={sosiologi_Ganjil}
+                    keyboardType="numeric"
                     onChangeText={value => {
                       setSosiologi_Ganjil(value);
                     }}
@@ -605,6 +867,7 @@ const ScoreScreen = ({navigation}) => {
                   <TextInput
                     style={styles.inputCell}
                     value={sosiologi_KKMGenap}
+                    keyboardType="numeric"
                     onChangeText={value => {
                       setSosiologi_KKMGenap(value);
                     }}
@@ -616,6 +879,7 @@ const ScoreScreen = ({navigation}) => {
                   <TextInput
                     style={styles.inputCell}
                     value={sosiologi_Genap}
+                    keyboardType="numeric"
                     onChangeText={value => {
                       setSosiologi_Genap(value);
                     }}
@@ -632,6 +896,7 @@ const ScoreScreen = ({navigation}) => {
                 <TextInput
                   style={styles.inputCell}
                   value={bahasaMandarin_KKMGanjil}
+                  keyboardType="numeric"
                   onChangeText={value => {
                     setBahasaMandarin_KKMGanjil(value);
                   }}
@@ -642,6 +907,7 @@ const ScoreScreen = ({navigation}) => {
                   <TextInput
                     style={styles.inputCell}
                     value={bahasaMandarin_Ganjil}
+                    keyboardType="numeric"
                     onChangeText={value => {
                       setBahasaMandarin_Ganjil(value);
                     }}
@@ -653,6 +919,7 @@ const ScoreScreen = ({navigation}) => {
                   <TextInput
                     style={styles.inputCell}
                     value={bahasaMandarin_KKMGenap}
+                    keyboardType="numeric"
                     onChangeText={value => {
                       setBahasaMandarin_KKMGenap(value);
                     }}
@@ -664,6 +931,7 @@ const ScoreScreen = ({navigation}) => {
                   <TextInput
                     style={styles.inputCell}
                     value={bahasaMandarin_Genap}
+                    keyboardType="numeric"
                     onChangeText={value => {
                       setBahasaMandarin_Genap(value);
                     }}
@@ -680,6 +948,7 @@ const ScoreScreen = ({navigation}) => {
                 <TextInput
                   style={styles.inputCell}
                   value={bahasaJepang_KKMGanjil}
+                  keyboardType="numeric"
                   onChangeText={value => {
                     setBahasaJepang_KKMGanjil(value);
                   }}
@@ -690,6 +959,7 @@ const ScoreScreen = ({navigation}) => {
                   <TextInput
                     style={styles.inputCell}
                     value={bahasaJepang_Ganjil}
+                    keyboardType="numeric"
                     onChangeText={value => {
                       setBahasaJepang_Ganjil(value);
                     }}
@@ -701,6 +971,7 @@ const ScoreScreen = ({navigation}) => {
                   <TextInput
                     style={styles.inputCell}
                     value={bahasaJepang_KKMGenap}
+                    keyboardType="numeric"
                     onChangeText={value => {
                       setBahasaJepang_KKMGenap(value);
                     }}
@@ -712,6 +983,7 @@ const ScoreScreen = ({navigation}) => {
                   <TextInput
                     style={styles.inputCell}
                     value={bahasaJepang_Genap}
+                    keyboardType="numeric"
                     onChangeText={value => {
                       setBahasaJepang_Genap(value);
                     }}
@@ -727,6 +999,7 @@ const ScoreScreen = ({navigation}) => {
                 <TextInput
                   style={styles.inputCell}
                   value={bahasaKorea_KKMGanjil}
+                  keyboardType="numeric"
                   onChangeText={value => {
                     setBahasaKorea_KKMGanjil(value);
                   }}
@@ -737,6 +1010,7 @@ const ScoreScreen = ({navigation}) => {
                   <TextInput
                     style={styles.inputCell}
                     value={bahasaKorea_Ganjil}
+                    keyboardType="numeric"
                     onChangeText={value => {
                       setBahasaKorea_Ganjil(value);
                     }}
@@ -748,6 +1022,7 @@ const ScoreScreen = ({navigation}) => {
                   <TextInput
                     style={styles.inputCell}
                     value={bahasaKorea_KKMGenap}
+                    keyboardType="numeric"
                     onChangeText={value => {
                       setBahasaKorea_KKMGenap(value);
                     }}
@@ -759,6 +1034,7 @@ const ScoreScreen = ({navigation}) => {
                   <TextInput
                     style={styles.inputCell}
                     value={bahasaKorea_Genap}
+                    keyboardType="numeric"
                     onChangeText={value => {
                       setBahasaKorea_Genap(value);
                     }}
@@ -775,6 +1051,7 @@ const ScoreScreen = ({navigation}) => {
                 <TextInput
                   style={styles.inputCell}
                   value={bahasaJerman_KKMGanjil}
+                  keyboardType="numeric"
                   onChangeText={value => {
                     setBahasaJerman_KKMGanjil(value);
                   }}
@@ -785,6 +1062,7 @@ const ScoreScreen = ({navigation}) => {
                   <TextInput
                     style={styles.inputCell}
                     value={bahasaJerman_Ganjil}
+                    keyboardType="numeric"
                     onChangeText={value => {
                       setBahasaJerman_Ganjil(value);
                     }}
@@ -796,6 +1074,7 @@ const ScoreScreen = ({navigation}) => {
                   <TextInput
                     style={styles.inputCell}
                     value={bahasaJerman_KKMGenap}
+                    keyboardType="numeric"
                     onChangeText={value => {
                       setBahasaJerman_KKMGenap(value);
                     }}
@@ -807,6 +1086,7 @@ const ScoreScreen = ({navigation}) => {
                   <TextInput
                     style={styles.inputCell}
                     value={bahasaJerman_Genap}
+                    keyboardType="numeric"
                     onChangeText={value => {
                       setBahasaJerman_Genap(value);
                     }}
@@ -819,7 +1099,8 @@ const ScoreScreen = ({navigation}) => {
         <TouchableOpacity
           style={styles.buttonScore}
           onPress={() => {
-            checknilai();
+            // checknilai();
+            storeGrades();
           }}>
           <Text style={styles.h2white}>Submit</Text>
         </TouchableOpacity>

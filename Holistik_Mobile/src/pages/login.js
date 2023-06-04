@@ -69,7 +69,7 @@ const LoginScreen = ({navigation}) => {
         const retval = res.data.success;
         // console.log(retval);
         if (retval) {
-          console.log(res.data.data.user);
+          // console.log(res.data.data.user);
           setLoading(false);
           const valueJSON = JSON.stringify(res.data.data.user);
           await AsyncStorage.setItem('@userData', valueJSON);
