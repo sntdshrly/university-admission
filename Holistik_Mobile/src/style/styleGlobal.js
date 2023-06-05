@@ -237,6 +237,7 @@ export const styles = StyleSheet.create({
   cardnotif: {
     width: (WW * 90) / 100,
     height: (WH * 8) / 100,
+    maxHeight: (WH * 12) / 100,
     borderColor: '#0E86D4',
     borderWidth: 2,
     backgroundColor: '#579EF1',

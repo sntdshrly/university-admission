@@ -26,11 +26,11 @@ export default {
         .post(defaultLink, body, config)
         .then(response => {
           resolve(response);
-          console.log('response : ', response.data);
+          // console.log('response : ', response.data);
         })
         .catch(error => {
           const originalRequest = error.config;
-          console.log(originalRequest);
+          // console.log(originalRequest);
 
           if (error.response == undefined) {
             Alert.alert('Error', 'Request Service Timeout..', [

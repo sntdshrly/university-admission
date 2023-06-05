@@ -46,7 +46,7 @@ const ScoreScreen = ({navigation}) => {
   const [bahasaInggris_KKMGenap, setBahasaInggris_KKMGenap] = useState('');
   const [bahasaInggris_KKMGanjil, setBahasaInggris_KKMGanjil] = useState('');
   const [bahasaInggris_Genap, setBahasaInggris_Genap] = useState('');
-  const [bahasaInggris_Ganjil, setBahasaInggris_Ganjil] = useState('');
+  const [bahasaInggris_Ganjil, setBahasaInggris_Ganjil] = useState(0);
 
   const [fisika_KKMGenap, setFisika_KKMGenap] = useState('');
   const [fisika_KKMGanjil, setFisika_KKMGanjil] = useState('');
@@ -103,19 +103,55 @@ const ScoreScreen = ({navigation}) => {
   const [EmailData, setEmailData] = useState('');
 
   useEffect(() => {
-    FetchStorage();
+    fetchData();
   }, [navigation]);
+
+  const fetchData = async () => {
+    try {
+      await FetchStorage();
+      FetchScore();
+    } catch (error) {
+      console.log('Error occurred:', error);
+    }
+  };
 
   const FetchStorage = async () => {
     try {
       const value = await AsyncStorage.getItem('@userData');
-      console.log(value);
+      // console.log(value);
       const parsedArray = JSON.parse(value);
       setEmailData(parsedArray);
       // console.log('Retrieved array value:', parsedArray);
     } catch (error) {
       console.log('Error retrieving array value:', error);
     }
+  };
+
+  const FetchScore = async () => {
+    setLoading(true);
+    Service.DefaultGETnoBody(
+      'https://holistik.it.maranatha.edu/api/grades/' + EmailData.id + '/fetch',
+      navigation,
+    )
+      .then(res => {
+        const retval = res.data.success;
+        // console.log(retval);
+        if (retval) {
+          setMatematika_KKMGenap(res.data.data);
+          setLoading(false);
+          // console.log(res.data.data[0].value);
+          setBahasaInggris_Ganjil(res.data.data[0].value.toString());
+
+          console.log('haha', bahasaInggris_Ganjil);
+          // navigation.replace('StartScreen');
+        } else {
+          setLoading(false);
+          Alert.alert('Gagal', 'Silahkan Coba Lagi');
+        }
+      })
+      .catch(err => {
+        console.log(err), setLoading(false);
+      });
   };
 
   const isLoader = () => {
