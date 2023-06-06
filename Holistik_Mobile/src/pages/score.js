@@ -102,6 +102,24 @@ const ScoreScreen = ({navigation}) => {
 
   const [EmailData, setEmailData] = useState('');
 
+  const [EditNilai, setEditNilai] = useState(false);
+
+  const subjects = [
+    'Matematika',
+    'Bahasa Indonesia',
+    'Bahasa Inggris',
+    'Fisika',
+    'Kimia',
+    'Biologi',
+    'Ekonomi',
+    'Geografi',
+    'Sosiologi',
+    'Bahasa Mandarin',
+    'Bahasa Jepang',
+    'Bahasa Korea',
+    'Bahasa Jerman',
+  ];
+
   useEffect(() => {
     fetchData();
   }, [navigation]);
@@ -137,12 +155,208 @@ const ScoreScreen = ({navigation}) => {
         const retval = res.data.success;
         // console.log(retval);
         if (retval) {
-          setMatematika_KKMGenap(res.data.data);
+          if (res.data.data[0].value) {
+            const filteredDataGanjil = getKKMAndValueBySubjectsAndSemester(
+              res.data.data,
+              subjects,
+              'Ganjil',
+            );
+            const filteredDataGenap = getKKMAndValueBySubjectsAndSemester(
+              res.data.data,
+              subjects,
+              'Genap',
+            );
+
+            console.log(filteredDataGanjil);
+
+            // Memasukkan nilai Bahasa Inggris untuk semester Ganjil
+            setBahasaInggris_KKMGanjil(
+              filteredDataGanjil['Bahasa Inggris'][0].kkm.toString(),
+            );
+            setBahasaInggris_Ganjil(
+              filteredDataGanjil['Bahasa Inggris'][0].value.toString(),
+            );
+
+            // Memasukkan nilai Matematika untuk semester Ganjil
+            setMatematika_KKMGanjil(
+              filteredDataGanjil['Matematika'][0].kkm.toString(),
+            );
+            setMatematika_Ganjil(
+              filteredDataGanjil['Matematika'][0].value.toString(),
+            );
+
+            // Memasukkan nilai Bahasa Indonesia untuk semester Ganjil
+            setBahasaIndonesia_KKMGanjil(
+              filteredDataGanjil['Bahasa Indonesia'][0].kkm.toString(),
+            );
+            setBahasaIndonesia_Ganjil(
+              filteredDataGanjil['Bahasa Indonesia'][0].value.toString(),
+            );
+
+            // Memasukkan nilai Fisika untuk semester Ganjil
+            setFisika_KKMGanjil(filteredDataGanjil['Fisika'][0].kkm.toString());
+            setFisika_Ganjil(filteredDataGanjil['Fisika'][0].value.toString());
+
+            // Memasukkan nilai Kimia untuk semester Ganjil
+            setKimia_KKMGanjil(filteredDataGanjil['Kimia'][0].kkm.toString());
+            setKimia_Ganjil(filteredDataGanjil['Kimia'][0].value.toString());
+
+            // Memasukkan nilai Biologi untuk semester Ganjil
+            setBiologi_KKMGanjil(
+              filteredDataGanjil['Biologi'][0].kkm.toString(),
+            );
+            setBiologi_Ganjil(
+              filteredDataGanjil['Biologi'][0].value.toString(),
+            );
+
+            // Memasukkan nilai Ekonomi untuk semester Ganjil
+            setEkonomi_KKMGanjil(
+              filteredDataGanjil['Ekonomi'][0].kkm.toString(),
+            );
+            setEkonomi_Ganjil(
+              filteredDataGanjil['Ekonomi'][0].value.toString(),
+            );
+
+            // Memasukkan nilai Geografi untuk semester Ganjil
+            setGeografi_KKMGanjil(
+              filteredDataGanjil['Geografi'][0].kkm.toString(),
+            );
+            setGeografi_Ganjil(
+              filteredDataGanjil['Geografi'][0].value.toString(),
+            );
+
+            // Memasukkan nilai Sosiologi untuk semester Ganjil
+            setSosiologi_KKMGanjil(
+              filteredDataGanjil['Sosiologi'][0].kkm.toString(),
+            );
+            setSosiologi_Ganjil(
+              filteredDataGanjil['Sosiologi'][0].value.toString(),
+            );
+
+            // Memasukkan nilai Bahasa Mandarin untuk semester Ganjil
+            setBahasaMandarin_KKMGanjil(
+              filteredDataGanjil['Bahasa Mandarin'][0].kkm.toString(),
+            );
+            setBahasaMandarin_Ganjil(
+              filteredDataGanjil['Bahasa Mandarin'][0].value.toString(),
+            );
+
+            // Memasukkan nilai Bahasa Jepang untuk semester Ganjil
+            setBahasaJepang_KKMGanjil(
+              filteredDataGanjil['Bahasa Jepang'][0].kkm.toString(),
+            );
+            setBahasaJepang_Ganjil(
+              filteredDataGanjil['Bahasa Jepang'][0].value.toString(),
+            );
+
+            // Memasukkan nilai Bahasa Korea untuk semester Ganjil
+            setBahasaKorea_KKMGanjil(
+              filteredDataGanjil['Bahasa Korea'][0].kkm.toString(),
+            );
+            setBahasaKorea_Ganjil(
+              filteredDataGanjil['Bahasa Korea'][0].value.toString(),
+            );
+
+            // Memasukkan nilai Bahasa Jerman untuk semester Ganjil
+            setBahasaJerman_KKMGanjil(
+              filteredDataGanjil['Bahasa Jerman'][0].kkm.toString(),
+            );
+            setBahasaJerman_Ganjil(
+              filteredDataGanjil['Bahasa Jerman'][0].value.toString(),
+            );
+
+            //GENAP
+
+            // Memasukkan nilai Matematika untuk semester Ganjil
+            setMatematika_KKMGenap(
+              filteredDataGenap['Matematika'][0].kkm.toString(),
+            );
+            setMatematika_Genap(
+              filteredDataGenap['Matematika'][0].value.toString(),
+            );
+
+            // Memasukkan nilai Bahasa Indonesia untuk semester Ganjil
+            setBahasaIndonesia_KKMGenap(
+              filteredDataGenap['Bahasa Indonesia'][0].kkm.toString(),
+            );
+            setBahasaIndonesia_Genap(
+              filteredDataGenap['Bahasa Indonesia'][0].value.toString(),
+            );
+
+            // Memasukkan nilai Bahasa Inggris untuk semester Genap
+            setBahasaInggris_KKMGenap(
+              filteredDataGenap['Bahasa Inggris'][0].kkm.toString(),
+            );
+            setBahasaInggris_Genap(
+              filteredDataGenap['Bahasa Inggris'][0].value.toString(),
+            );
+
+            // Memasukkan nilai Mata Kuliah Fisika untuk semester Genap
+            setFisika_KKMGenap(filteredDataGenap['Fisika'][0].kkm.toString());
+            setFisika_Genap(filteredDataGenap['Fisika'][0].value.toString());
+
+            // Memasukkan nilai Mata Kuliah Kimia untuk semester Genap
+            setKimia_KKMGenap(filteredDataGenap['Kimia'][0].kkm.toString());
+            setKimia_Genap(filteredDataGenap['Kimia'][0].value.toString());
+
+            // Memasukkan nilai Mata Kuliah Biologi untuk semester Genap
+            setBiologi_KKMGenap(filteredDataGenap['Biologi'][0].kkm.toString());
+            setBiologi_Genap(filteredDataGenap['Biologi'][0].value.toString());
+
+            // Memasukkan nilai Mata Kuliah Ekonomi untuk semester Genap
+            setEkonomi_KKMGenap(filteredDataGenap['Ekonomi'][0].kkm.toString());
+            setEkonomi_Genap(filteredDataGenap['Ekonomi'][0].value.toString());
+
+            // Memasukkan nilai Mata Kuliah Geografi untuk semester Genap
+            setGeografi_KKMGenap(
+              filteredDataGenap['Geografi'][0].kkm.toString(),
+            );
+            setGeografi_Genap(
+              filteredDataGenap['Geografi'][0].value.toString(),
+            );
+
+            // Memasukkan nilai Mata Kuliah Sosiologi untuk semester Genap
+            setSosiologi_KKMGenap(
+              filteredDataGenap['Sosiologi'][0].kkm.toString(),
+            );
+            setSosiologi_Genap(
+              filteredDataGenap['Sosiologi'][0].value.toString(),
+            );
+
+            // Memasukkan nilai Mata Kuliah Bahasa Mandarin untuk semester Genap
+            setBahasaMandarin_KKMGenap(
+              filteredDataGenap['Bahasa Mandarin'][0].kkm.toString(),
+            );
+            setBahasaMandarin_Genap(
+              filteredDataGenap['Bahasa Mandarin'][0].value.toString(),
+            );
+
+            // Memasukkan nilai Mata Kuliah Bahasa Jepang untuk semester Genap
+            setBahasaJepang_KKMGenap(
+              filteredDataGenap['Bahasa Jepang'][0].kkm.toString(),
+            );
+            setBahasaJepang_Genap(
+              filteredDataGenap['Bahasa Jepang'][0].value.toString(),
+            );
+
+            // Memasukkan nilai Mata Kuliah Bahasa Korea untuk semester Genap
+            setBahasaKorea_KKMGenap(
+              filteredDataGenap['Bahasa Korea'][0].kkm.toString(),
+            );
+            setBahasaKorea_Genap(
+              filteredDataGenap['Bahasa Korea'][0].value.toString(),
+            );
+
+            // Memasukkan nilai Mata Kuliah Bahasa Jerman untuk semester Genap
+            setBahasaJerman_KKMGenap(
+              filteredDataGenap['Bahasa Jerman'][0].kkm.toString(),
+            );
+            setBahasaJerman_Genap(
+              filteredDataGenap['Bahasa Jerman'][0].value.toString(),
+            );
+          }
           setLoading(false);
           // console.log(res.data.data[0].value);
-          setBahasaInggris_Ganjil(res.data.data[0].value.toString());
-
-          console.log('haha', bahasaInggris_Ganjil);
           // navigation.replace('StartScreen');
         } else {
           setLoading(false);
@@ -152,6 +366,25 @@ const ScoreScreen = ({navigation}) => {
       .catch(err => {
         console.log(err), setLoading(false);
       });
+  };
+
+  const getKKMAndValueBySubjectsAndSemester = (data, subjects, semester) => {
+    const result = {};
+
+    data.forEach(entry => {
+      const {subject, kkm, value} = entry;
+      const {name} = subject;
+
+      if (subjects.includes(name) && entry.semester === semester) {
+        if (!result[name]) {
+          result[name] = [];
+        }
+
+        result[name].push({kkm, value});
+      }
+    });
+
+    return result;
   };
 
   const isLoader = () => {
@@ -179,7 +412,7 @@ const ScoreScreen = ({navigation}) => {
 
   const storeGrades = () => {
     setLoading(true);
-    console.log(matematika_Ganjil);
+    // console.log(matematika_Ganjil);
 
     const body = JSON.stringify({
       data: [
@@ -437,6 +670,18 @@ const ScoreScreen = ({navigation}) => {
         <View style={{marginHorizontal: (WW * 2) / 100}}>
           <Text style={styles.h1white}>Input Nilai Anda</Text>
         </View>
+        <View style={{marginHorizontal: (WW * 10) / 100}}>
+          <TouchableOpacity
+            onPress={() => {
+              setEditNilai(!EditNilai);
+            }}>
+            <IconMC
+              name="pencil-box-multiple"
+              size={35}
+              color={EditNilai ? '#ff0000' : '#ffffff'}
+            />
+          </TouchableOpacity>
+        </View>
       </View>
       <View style={styles.basehome_pageprodi}>
         {isLoader()}
@@ -466,6 +711,7 @@ const ScoreScreen = ({navigation}) => {
               </View>
               <View style={styles.boxScore}>
                 <TextInput
+                  editable={EditNilai}
                   style={styles.inputCell}
                   value={matematika_KKMGanjil}
                   keyboardType="numeric"
@@ -477,6 +723,7 @@ const ScoreScreen = ({navigation}) => {
               <Text style={styles.headerCell}>
                 <View style={styles.boxScore}>
                   <TextInput
+                    editable={EditNilai}
                     style={styles.inputCell}
                     value={matematika_Ganjil}
                     keyboardType="numeric"
@@ -489,6 +736,7 @@ const ScoreScreen = ({navigation}) => {
               <Text style={styles.headerCell}>
                 <View style={styles.boxScore}>
                   <TextInput
+                    editable={EditNilai}
                     style={styles.inputCell}
                     value={matematika_KKMGenap}
                     keyboardType="numeric"
@@ -501,6 +749,7 @@ const ScoreScreen = ({navigation}) => {
               <Text style={styles.headerCell}>
                 <View style={styles.boxScore}>
                   <TextInput
+                    editable={EditNilai}
                     style={styles.inputCell}
                     value={matematika_Genap}
                     keyboardType="numeric"
@@ -517,6 +766,7 @@ const ScoreScreen = ({navigation}) => {
               </View>
               <View style={styles.boxScore}>
                 <TextInput
+                  editable={EditNilai}
                   style={styles.inputCell}
                   value={bahasaIndonesia_KKMGanjil}
                   keyboardType="numeric"
@@ -528,6 +778,7 @@ const ScoreScreen = ({navigation}) => {
               <Text style={styles.headerCell}>
                 <View style={styles.boxScore}>
                   <TextInput
+                    editable={EditNilai}
                     style={styles.inputCell}
                     value={bahasaIndonesia_Ganjil}
                     keyboardType="numeric"
@@ -540,6 +791,7 @@ const ScoreScreen = ({navigation}) => {
               <Text style={styles.headerCell}>
                 <View style={styles.boxScore}>
                   <TextInput
+                    editable={EditNilai}
                     style={styles.inputCell}
                     value={bahasaIndonesia_KKMGenap}
                     keyboardType="numeric"
@@ -552,6 +804,7 @@ const ScoreScreen = ({navigation}) => {
               <Text style={styles.headerCell}>
                 <View style={styles.boxScore}>
                   <TextInput
+                    editable={EditNilai}
                     style={styles.inputCell}
                     value={bahasaIndonesia_Genap}
                     keyboardType="numeric"
@@ -569,6 +822,7 @@ const ScoreScreen = ({navigation}) => {
               </View>
               <View style={styles.boxScore}>
                 <TextInput
+                  editable={EditNilai}
                   style={styles.inputCell}
                   value={bahasaInggris_KKMGanjil}
                   keyboardType="numeric"
@@ -580,6 +834,7 @@ const ScoreScreen = ({navigation}) => {
               <Text style={styles.headerCell}>
                 <View style={styles.boxScore}>
                   <TextInput
+                    editable={EditNilai}
                     style={styles.inputCell}
                     value={bahasaInggris_Ganjil}
                     keyboardType="numeric"
@@ -592,6 +847,7 @@ const ScoreScreen = ({navigation}) => {
               <Text style={styles.headerCell}>
                 <View style={styles.boxScore}>
                   <TextInput
+                    editable={EditNilai}
                     style={styles.inputCell}
                     value={bahasaInggris_KKMGenap}
                     keyboardType="numeric"
@@ -604,6 +860,7 @@ const ScoreScreen = ({navigation}) => {
               <Text style={styles.headerCell}>
                 <View style={styles.boxScore}>
                   <TextInput
+                    editable={EditNilai}
                     style={styles.inputCell}
                     value={bahasaInggris_Genap}
                     keyboardType="numeric"
@@ -620,6 +877,7 @@ const ScoreScreen = ({navigation}) => {
               </View>
               <View style={styles.boxScore}>
                 <TextInput
+                  editable={EditNilai}
                   style={styles.inputCell}
                   value={fisika_KKMGanjil}
                   keyboardType="numeric"
@@ -631,6 +889,7 @@ const ScoreScreen = ({navigation}) => {
               <Text style={styles.headerCell}>
                 <View style={styles.boxScore}>
                   <TextInput
+                    editable={EditNilai}
                     style={styles.inputCell}
                     value={fisika_Ganjil}
                     keyboardType="numeric"
@@ -643,6 +902,7 @@ const ScoreScreen = ({navigation}) => {
               <Text style={styles.headerCell}>
                 <View style={styles.boxScore}>
                   <TextInput
+                    editable={EditNilai}
                     style={styles.inputCell}
                     value={fisika_KKMGenap}
                     keyboardType="numeric"
@@ -655,6 +915,7 @@ const ScoreScreen = ({navigation}) => {
               <Text style={styles.headerCell}>
                 <View style={styles.boxScore}>
                   <TextInput
+                    editable={EditNilai}
                     style={styles.inputCell}
                     value={fisika_Genap}
                     keyboardType="numeric"
@@ -672,6 +933,7 @@ const ScoreScreen = ({navigation}) => {
               </View>
               <View style={styles.boxScore}>
                 <TextInput
+                  editable={EditNilai}
                   style={styles.inputCell}
                   value={kimia_KKMGanjil}
                   keyboardType="numeric"
@@ -683,6 +945,7 @@ const ScoreScreen = ({navigation}) => {
               <Text style={styles.headerCell}>
                 <View style={styles.boxScore}>
                   <TextInput
+                    editable={EditNilai}
                     style={styles.inputCell}
                     value={kimia_Ganjil}
                     keyboardType="numeric"
@@ -695,6 +958,7 @@ const ScoreScreen = ({navigation}) => {
               <Text style={styles.headerCell}>
                 <View style={styles.boxScore}>
                   <TextInput
+                    editable={EditNilai}
                     style={styles.inputCell}
                     value={kimia_KKMGenap}
                     keyboardType="numeric"
@@ -707,6 +971,7 @@ const ScoreScreen = ({navigation}) => {
               <Text style={styles.headerCell}>
                 <View style={styles.boxScore}>
                   <TextInput
+                    editable={EditNilai}
                     style={styles.inputCell}
                     value={kimia_Genap}
                     keyboardType="numeric"
@@ -723,6 +988,7 @@ const ScoreScreen = ({navigation}) => {
               </View>
               <View style={styles.boxScore}>
                 <TextInput
+                  editable={EditNilai}
                   style={styles.inputCell}
                   value={biologi_KKMGanjil}
                   keyboardType="numeric"
@@ -734,6 +1000,7 @@ const ScoreScreen = ({navigation}) => {
               <Text style={styles.headerCell}>
                 <View style={styles.boxScore}>
                   <TextInput
+                    editable={EditNilai}
                     style={styles.inputCell}
                     value={biologi_Ganjil}
                     keyboardType="numeric"
@@ -746,6 +1013,7 @@ const ScoreScreen = ({navigation}) => {
               <Text style={styles.headerCell}>
                 <View style={styles.boxScore}>
                   <TextInput
+                    editable={EditNilai}
                     style={styles.inputCell}
                     value={biologi_KKMGenap}
                     keyboardType="numeric"
@@ -758,6 +1026,7 @@ const ScoreScreen = ({navigation}) => {
               <Text style={styles.headerCell}>
                 <View style={styles.boxScore}>
                   <TextInput
+                    editable={EditNilai}
                     style={styles.inputCell}
                     value={biologi_Genap}
                     keyboardType="numeric"
@@ -775,6 +1044,7 @@ const ScoreScreen = ({navigation}) => {
               </View>
               <View style={styles.boxScore}>
                 <TextInput
+                  editable={EditNilai}
                   style={styles.inputCell}
                   value={ekonomi_KKMGanjil}
                   keyboardType="numeric"
@@ -786,6 +1056,7 @@ const ScoreScreen = ({navigation}) => {
               <Text style={styles.headerCell}>
                 <View style={styles.boxScore}>
                   <TextInput
+                    editable={EditNilai}
                     style={styles.inputCell}
                     value={ekonomi_Ganjil}
                     keyboardType="numeric"
@@ -798,6 +1069,7 @@ const ScoreScreen = ({navigation}) => {
               <Text style={styles.headerCell}>
                 <View style={styles.boxScore}>
                   <TextInput
+                    editable={EditNilai}
                     style={styles.inputCell}
                     value={ekonomi_KKMGenap}
                     keyboardType="numeric"
@@ -810,6 +1082,7 @@ const ScoreScreen = ({navigation}) => {
               <Text style={styles.headerCell}>
                 <View style={styles.boxScore}>
                   <TextInput
+                    editable={EditNilai}
                     style={styles.inputCell}
                     value={ekonomi_Genap}
                     keyboardType="numeric"
@@ -827,6 +1100,7 @@ const ScoreScreen = ({navigation}) => {
               </View>
               <View style={styles.boxScore}>
                 <TextInput
+                  editable={EditNilai}
                   style={styles.inputCell}
                   value={geografi_KKMGanjil}
                   keyboardType="numeric"
@@ -838,6 +1112,7 @@ const ScoreScreen = ({navigation}) => {
               <Text style={styles.headerCell}>
                 <View style={styles.boxScore}>
                   <TextInput
+                    editable={EditNilai}
                     style={styles.inputCell}
                     value={geografi_Ganjil}
                     keyboardType="numeric"
@@ -850,6 +1125,7 @@ const ScoreScreen = ({navigation}) => {
               <Text style={styles.headerCell}>
                 <View style={styles.boxScore}>
                   <TextInput
+                    editable={EditNilai}
                     style={styles.inputCell}
                     value={geografi_KKMGenap}
                     keyboardType="numeric"
@@ -862,6 +1138,7 @@ const ScoreScreen = ({navigation}) => {
               <Text style={styles.headerCell}>
                 <View style={styles.boxScore}>
                   <TextInput
+                    editable={EditNilai}
                     style={styles.inputCell}
                     value={geografi_Genap}
                     keyboardType="numeric"
@@ -878,6 +1155,7 @@ const ScoreScreen = ({navigation}) => {
               </View>
               <View style={styles.boxScore}>
                 <TextInput
+                  editable={EditNilai}
                   style={styles.inputCell}
                   value={sosiologi_KKMGanjil}
                   keyboardType="numeric"
@@ -889,6 +1167,7 @@ const ScoreScreen = ({navigation}) => {
               <Text style={styles.headerCell}>
                 <View style={styles.boxScore}>
                   <TextInput
+                    editable={EditNilai}
                     style={styles.inputCell}
                     value={sosiologi_Ganjil}
                     keyboardType="numeric"
@@ -901,6 +1180,7 @@ const ScoreScreen = ({navigation}) => {
               <Text style={styles.headerCell}>
                 <View style={styles.boxScore}>
                   <TextInput
+                    editable={EditNilai}
                     style={styles.inputCell}
                     value={sosiologi_KKMGenap}
                     keyboardType="numeric"
@@ -913,6 +1193,7 @@ const ScoreScreen = ({navigation}) => {
               <Text style={styles.headerCell}>
                 <View style={styles.boxScore}>
                   <TextInput
+                    editable={EditNilai}
                     style={styles.inputCell}
                     value={sosiologi_Genap}
                     keyboardType="numeric"
@@ -930,6 +1211,7 @@ const ScoreScreen = ({navigation}) => {
               </View>
               <View style={styles.boxScore}>
                 <TextInput
+                  editable={EditNilai}
                   style={styles.inputCell}
                   value={bahasaMandarin_KKMGanjil}
                   keyboardType="numeric"
@@ -941,6 +1223,7 @@ const ScoreScreen = ({navigation}) => {
               <Text style={styles.headerCell}>
                 <View style={styles.boxScore}>
                   <TextInput
+                    editable={EditNilai}
                     style={styles.inputCell}
                     value={bahasaMandarin_Ganjil}
                     keyboardType="numeric"
@@ -953,6 +1236,7 @@ const ScoreScreen = ({navigation}) => {
               <Text style={styles.headerCell}>
                 <View style={styles.boxScore}>
                   <TextInput
+                    editable={EditNilai}
                     style={styles.inputCell}
                     value={bahasaMandarin_KKMGenap}
                     keyboardType="numeric"
@@ -965,6 +1249,7 @@ const ScoreScreen = ({navigation}) => {
               <Text style={styles.headerCell}>
                 <View style={styles.boxScore}>
                   <TextInput
+                    editable={EditNilai}
                     style={styles.inputCell}
                     value={bahasaMandarin_Genap}
                     keyboardType="numeric"
@@ -982,6 +1267,7 @@ const ScoreScreen = ({navigation}) => {
               </View>
               <View style={styles.boxScore}>
                 <TextInput
+                  editable={EditNilai}
                   style={styles.inputCell}
                   value={bahasaJepang_KKMGanjil}
                   keyboardType="numeric"
@@ -993,6 +1279,7 @@ const ScoreScreen = ({navigation}) => {
               <Text style={styles.headerCell}>
                 <View style={styles.boxScore}>
                   <TextInput
+                    editable={EditNilai}
                     style={styles.inputCell}
                     value={bahasaJepang_Ganjil}
                     keyboardType="numeric"
@@ -1005,6 +1292,7 @@ const ScoreScreen = ({navigation}) => {
               <Text style={styles.headerCell}>
                 <View style={styles.boxScore}>
                   <TextInput
+                    editable={EditNilai}
                     style={styles.inputCell}
                     value={bahasaJepang_KKMGenap}
                     keyboardType="numeric"
@@ -1017,6 +1305,7 @@ const ScoreScreen = ({navigation}) => {
               <Text style={styles.headerCell}>
                 <View style={styles.boxScore}>
                   <TextInput
+                    editable={EditNilai}
                     style={styles.inputCell}
                     value={bahasaJepang_Genap}
                     keyboardType="numeric"
@@ -1033,6 +1322,7 @@ const ScoreScreen = ({navigation}) => {
               </View>
               <View style={styles.boxScore}>
                 <TextInput
+                  editable={EditNilai}
                   style={styles.inputCell}
                   value={bahasaKorea_KKMGanjil}
                   keyboardType="numeric"
@@ -1044,6 +1334,7 @@ const ScoreScreen = ({navigation}) => {
               <Text style={styles.headerCell}>
                 <View style={styles.boxScore}>
                   <TextInput
+                    editable={EditNilai}
                     style={styles.inputCell}
                     value={bahasaKorea_Ganjil}
                     keyboardType="numeric"
@@ -1056,6 +1347,7 @@ const ScoreScreen = ({navigation}) => {
               <Text style={styles.headerCell}>
                 <View style={styles.boxScore}>
                   <TextInput
+                    editable={EditNilai}
                     style={styles.inputCell}
                     value={bahasaKorea_KKMGenap}
                     keyboardType="numeric"
@@ -1068,6 +1360,7 @@ const ScoreScreen = ({navigation}) => {
               <Text style={styles.headerCell}>
                 <View style={styles.boxScore}>
                   <TextInput
+                    editable={EditNilai}
                     style={styles.inputCell}
                     value={bahasaKorea_Genap}
                     keyboardType="numeric"
@@ -1085,6 +1378,7 @@ const ScoreScreen = ({navigation}) => {
               </View>
               <View style={styles.boxScore}>
                 <TextInput
+                  editable={EditNilai}
                   style={styles.inputCell}
                   value={bahasaJerman_KKMGanjil}
                   keyboardType="numeric"
@@ -1096,6 +1390,7 @@ const ScoreScreen = ({navigation}) => {
               <Text style={styles.headerCell}>
                 <View style={styles.boxScore}>
                   <TextInput
+                    editable={EditNilai}
                     style={styles.inputCell}
                     value={bahasaJerman_Ganjil}
                     keyboardType="numeric"
@@ -1108,6 +1403,7 @@ const ScoreScreen = ({navigation}) => {
               <Text style={styles.headerCell}>
                 <View style={styles.boxScore}>
                   <TextInput
+                    editable={EditNilai}
                     style={styles.inputCell}
                     value={bahasaJerman_KKMGenap}
                     keyboardType="numeric"
@@ -1120,6 +1416,7 @@ const ScoreScreen = ({navigation}) => {
               <Text style={styles.headerCell}>
                 <View style={styles.boxScore}>
                   <TextInput
+                    editable={EditNilai}
                     style={styles.inputCell}
                     value={bahasaJerman_Genap}
                     keyboardType="numeric"
@@ -1132,14 +1429,18 @@ const ScoreScreen = ({navigation}) => {
             </View>
           </View>
         </ScrollView>
-        <TouchableOpacity
-          style={styles.buttonScore}
-          onPress={() => {
-            // checknilai();
-            storeGrades();
-          }}>
-          <Text style={styles.h2white}>Submit</Text>
-        </TouchableOpacity>
+        {EditNilai ? (
+          <TouchableOpacity
+            style={styles.buttonScore}
+            onPress={() => {
+              // checknilai();
+              storeGrades();
+            }}>
+            <Text style={styles.h2white}>Submit</Text>
+          </TouchableOpacity>
+        ) : (
+          <View></View>
+        )}
       </View>
     </View>
   );

@@ -310,6 +310,7 @@ export const styles = StyleSheet.create({
     height: (WW * 10) / 100,
   },
   buttonScore: {
+    marginTop: (WW * 5) / 100,
     backgroundColor: color.blackStr,
     width: (WW * 80) / 100,
     height: (WH * 6) / 100,
