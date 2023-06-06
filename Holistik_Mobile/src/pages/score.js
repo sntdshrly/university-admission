@@ -121,34 +121,27 @@ const ScoreScreen = ({navigation}) => {
   ];
 
   useEffect(() => {
-    fetchData();
+    FetchStorage();
   }, [navigation]);
-
-  const fetchData = async () => {
-    try {
-      await FetchStorage();
-      FetchScore();
-    } catch (error) {
-      console.log('Error occurred:', error);
-    }
-  };
 
   const FetchStorage = async () => {
     try {
+      setLoading(true);
       const value = await AsyncStorage.getItem('@userData');
       // console.log(value);
       const parsedArray = JSON.parse(value);
       setEmailData(parsedArray);
+      FetchScore(parsedArray.id);
       // console.log('Retrieved array value:', parsedArray);
     } catch (error) {
       console.log('Error retrieving array value:', error);
     }
   };
 
-  const FetchScore = async () => {
+  const FetchScore = async id => {
     setLoading(true);
     Service.DefaultGETnoBody(
-      'https://holistik.it.maranatha.edu/api/grades/' + EmailData.id + '/fetch',
+      'https://holistik.it.maranatha.edu/api/grades/' + id + '/fetch',
       navigation,
     )
       .then(res => {
@@ -578,6 +571,7 @@ const ScoreScreen = ({navigation}) => {
     Service.Default(
       'https://holistik.it.maranatha.edu/api/grades/' + EmailData.id + '/store',
       body,
+      navigation,
     )
       .then(res => {
         const retval = res.data.success;

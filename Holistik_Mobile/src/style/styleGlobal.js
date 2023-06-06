@@ -322,4 +322,16 @@ export const styles = StyleSheet.create({
     borderWidth: 2,
     borderColor: color.blackStr,
   },
+  NotifDetail: {
+    width: WW,
+    height: (WH * 50) / 100,
+    borderColor: '#579EF1',
+    borderWidth: 2,
+    backgroundColor: color.white,
+    borderTopLeftRadius: 30,
+    borderTopRightRadius: 30,
+    position: 'absolute',
+    bottom: 0,
+    alignItems: 'center',
+  },
 });

@@ -100,7 +100,11 @@ const HomeScreen = ({navigation}) => {
   const logout = () => {
     setLoading(true);
     const body = JSON.stringify({});
-    Service.Default('https://holistik.it.maranatha.edu/api/logout', body)
+    Service.Default(
+      'https://holistik.it.maranatha.edu/api/logout',
+      body,
+      navigation,
+    )
       .then(async res => {
         const retval = res.data.success;
         if (retval) {

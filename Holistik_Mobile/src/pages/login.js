@@ -64,7 +64,11 @@ const LoginScreen = ({navigation}) => {
       email: Email,
       password: Password,
     });
-    Service.DefaultnonToken('https://holistik.it.maranatha.edu/api/login', body)
+    Service.DefaultnonToken(
+      'https://holistik.it.maranatha.edu/api/login',
+      body,
+      navigation,
+    )
       .then(async res => {
         const retval = res.data.success;
         // console.log(retval);

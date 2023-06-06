@@ -167,6 +167,7 @@ const ProdiScreen = ({navigation}) => {
         EmailData.id +
         '/store',
       body,
+      navigation,
     )
       .then(res => {
         // console.log(res.data.success);

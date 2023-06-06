@@ -5,7 +5,7 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 
 //===========================================
 export default {
-  Default: async function (link, body) {
+  Default: async function (link, body, navigation) {
     const defaultLink = link;
     const Token = await AsyncStorage.getItem('@Token');
 
@@ -52,6 +52,16 @@ export default {
             ]);
 
             reject();
+          } else if (error.message == 'Request failed with status code 401') {
+            Alert.alert('Sesi Berakhir', 'Silahkan Login Ulang', [
+              ({text: 'Cancel'},
+              {
+                text: 'OK',
+                onPress: () => {
+                  navigation.replace('StartScreen');
+                },
+              }),
+            ]);
           } else {
             Alert.alert('Error ' + defaultLink, error.message, [
               {text: 'Cancel'},
@@ -161,7 +171,7 @@ export default {
 
     return instance;
   },
-  DefaultGET: async function (link, body) {
+  DefaultGET: async function (link, body, navigation) {
     const defaultLink = link;
     const Token = await AsyncStorage.getItem('@Token');
     // console.log('Bearer' + Token);
@@ -207,6 +217,16 @@ export default {
             ]);
 
             reject();
+          } else if (error.message == 'Request failed with status code 401') {
+            Alert.alert('Sesi Berakhir', 'Silahkan Login Ulang', [
+              ({text: 'Cancel'},
+              {
+                text: 'OK',
+                onPress: () => {
+                  navigation.replace('StartScreen');
+                },
+              }),
+            ]);
           } else {
             Alert.alert('Error ' + defaultLink, error.message, [
               {text: 'Cancel'},
@@ -233,7 +253,7 @@ export default {
 
     return instance;
   },
-  DefaultnonToken: async function (link, body) {
+  DefaultnonToken: async function (link, body, navigation) {
     const defaultLink = link;
 
     const config = {
@@ -279,6 +299,16 @@ export default {
             ]);
 
             reject();
+          } else if (error.message == 'Request failed with status code 401') {
+            Alert.alert('Sesi Berakhir', 'Silahkan Login Ulang', [
+              ({text: 'Cancel'},
+              {
+                text: 'OK',
+                onPress: () => {
+                  navigation.replace('StartScreen');
+                },
+              }),
+            ]);
           } else {
             Alert.alert('Error ' + defaultLink, error.message, [
               {text: 'Cancel'},

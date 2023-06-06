@@ -22,8 +22,11 @@ const WH = Dimensions.get('window').height;
 const Notifications = ({navigation}) => {
   const [formattedDate, setFormattedDate] = useState('');
   const [Loading, setLoading] = useState(false);
-  const [NotifData, setNotifData] = useState(false);
-  const [EmailData, setEmailData] = useState(false);
+  const [NotifData, setNotifData] = useState([]);
+  const [EmailData, setEmailData] = useState([]);
+  const [ModalNotif, setModalNotif] = useState(false);
+  const [NotifIndex, setNotifIndex] = useState('');
+  const [NotifItem, setNotifItem] = useState('');
 
   useEffect(() => {
     const date = new Date();
@@ -31,7 +34,6 @@ const Notifications = ({navigation}) => {
     const formatted = date.toLocaleDateString('en-US', options);
     setFormattedDate(formatted);
     FetchStorage();
-    FetchNotif();
   }, [navigation]);
 
   const FetchStorage = async () => {
@@ -42,7 +44,7 @@ const Notifications = ({navigation}) => {
       const parsedArray = JSON.parse(value);
       setEmailData(parsedArray);
       // console.log('Retrieved array value:', parsedArray);
-      setLoading(false);
+      FetchNotif(parsedArray.id);
     } catch (error) {
       setLoading(false);
 
@@ -73,12 +75,28 @@ const Notifications = ({navigation}) => {
     );
   };
 
-  const FetchNotif = async () => {
+  const ModalDetail = () => {
+    return (
+      <Modal
+        transparent={true}
+        visible={ModalNotif}
+        onRequestClose={() => {
+          setModalNotif(false);
+        }}>
+        <View style={styles.NotifDetail}>
+          <Text style={styles.h1}>Notifikasi {NotifIndex + 1}</Text>
+          <Text style={styles.h1}>{NotifItem.description}</Text>
+        </View>
+      </Modal>
+    );
+  };
+
+  const FetchNotif = async id => {
     console.log(EmailData.id);
     setLoading(true);
     Service.DefaultGETnoBody(
       'https://holistik.it.maranatha.edu/api/users/' +
-        EmailData.id +
+        id +
         '/notifications/fetch',
       navigation,
     )
@@ -102,7 +120,13 @@ const Notifications = ({navigation}) => {
 
   NotifCard = ({item, index}) => {
     return (
-      <TouchableOpacity style={styles.cardnotif}>
+      <TouchableOpacity
+        style={styles.cardnotif}
+        onPress={() => {
+          setNotifIndex(index);
+          setNotifItem(item);
+          setModalNotif(true);
+        }}>
         <View style={{flexDirection: 'row'}}>
           <View style={styles.iconnotifcard}>
             {item.is_read ? (
@@ -111,9 +135,14 @@ const Notifications = ({navigation}) => {
               <IconMC name="bell-outline" size={35} color="#ffffff" />
             )}
           </View>
-          <View style={{padding: (WW * 2) / 100, justifyContent: 'center'}}>
-            <View style={{flexDirection: 'row'}}>
-              <Text style={styles.h2white}>Notification {index}</Text>
+          <View
+            style={{
+              padding: (WW * 2) / 100,
+              justifyContent: 'center',
+              overflow: 'hidden',
+            }}>
+            <View style={{flexDirection: 'row', alignItems: 'center'}}>
+              <Text style={styles.h2white}>Notification {index + 1}</Text>
               <View
                 style={{
                   right: -(WW * 9) / 100,
@@ -123,7 +152,14 @@ const Notifications = ({navigation}) => {
                 </Text>
               </View>
             </View>
-            <Text style={styles.h4white}>{item.description}</Text>
+            <View style={{width: (WW * 70) / 100}}>
+              <Text
+                style={styles.h4white}
+                numberOfLines={1}
+                ellipsizeMode="tail">
+                {item.description}
+              </Text>
+            </View>
           </View>
         </View>
       </TouchableOpacity>
@@ -133,6 +169,7 @@ const Notifications = ({navigation}) => {
   return (
     <View style={styles.container_blue}>
       {isLoader()}
+      {ModalDetail()}
 
       <TouchableOpacity
         onPress={() => {
