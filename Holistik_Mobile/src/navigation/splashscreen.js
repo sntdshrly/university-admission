@@ -27,6 +27,13 @@ const SplashScreen = ({navigation}) => {
       // console.log(value);
       const parsedArray = JSON.parse(value);
       setEmailData(parsedArray);
+
+      if (value) {
+        navigation.replace('HomeScreen');
+      } else {
+        navigation.replace('StartScreen');
+      }
+
       // console.log('Retrieved array value:', parsedArray);
     } catch (error) {
       console.log('Error retrieving array value:', error);
@@ -34,15 +41,7 @@ const SplashScreen = ({navigation}) => {
   };
 
   useEffect(() => {
-    const timer = setTimeout(() => {
-      if (EmailData) {
-        navigation.replace('HomeScreen');
-      } else {
-        navigation.replace('StartScreen');
-      }
-    }, 1000); // change this to the amount of time you want your splash screen to be displayed
-
-    return () => clearTimeout(timer);
+    FetchStorage();
   }, [navigation]);
 
   return (
