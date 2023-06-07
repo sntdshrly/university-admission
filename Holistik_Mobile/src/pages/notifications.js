@@ -84,8 +84,35 @@ const Notifications = ({navigation}) => {
           setModalNotif(false);
         }}>
         <View style={styles.NotifDetail}>
+          <View style={{flexDirection: 'row'}}>
+            <IconMC name="bell-outline" size={35} color="#579EF1" />
+            <Text
+              style={[
+                styles.h2black,
+                {left: (WW * 25) / 100, position: 'absolute'},
+              ]}>
+              {new Date(NotifItem.created_at).toLocaleDateString('en-GB')}
+            </Text>
+          </View>
           <Text style={styles.h1}>Notifikasi {NotifIndex + 1}</Text>
-          <Text style={styles.h1}>{NotifItem.description}</Text>
+          <Text></Text>
+          <View style={{height: (WH * 3) / 100}} />
+          <Text style={[styles.h3black, {textAlign: 'justify'}]}>
+            {NotifItem.description}
+          </Text>
+          <TouchableOpacity
+            style={[
+              styles.buttonScore,
+              {
+                top: (WH * 15) / 100,
+                width: (WW * 90) / 100,
+              },
+            ]}
+            onPress={() => {
+              setModalNotif(false);
+            }}>
+            <Text style={styles.h2white}>Close</Text>
+          </TouchableOpacity>
         </View>
       </Modal>
     );
@@ -104,9 +131,49 @@ const Notifications = ({navigation}) => {
         const retval = res.data.success;
         // console.log(retval);
         if (retval) {
-          setNotifData(res.data.data);
+          sortData = res.data.data.sort(
+            (a, b) => new Date(b.created_at) - new Date(a.created_at),
+          );
+          setNotifData(sortData);
           setLoading(false);
-          console.log(res.data.data);
+          // console.log(res.data.data);
+          // navigation.replace('StartScreen');
+        } else {
+          setLoading(false);
+          Alert.alert('Gagal', 'Silahkan Coba Lagi');
+        }
+      })
+      .catch(err => {
+        console.log(err), setLoading(false);
+      });
+  };
+
+  const UpdateNotif = async (userid, notifid) => {
+    console.log(
+      'https://holistik.it.maranatha.edu/api/users/' +
+        userid +
+        '/notifications/' +
+        notifid +
+        '/update',
+    );
+    setLoading(true);
+    const body = JSON.stringify({});
+    Service.Default(
+      'https://holistik.it.maranatha.edu/api/users/' +
+        userid +
+        '/notifications/' +
+        notifid +
+        '/update',
+      body,
+      navigation,
+    )
+      .then(res => {
+        const retval = res.data.success;
+        // console.log(retval);
+        if (retval) {
+          setLoading(false);
+          FetchNotif(userid);
+          setModalNotif(true);
           // navigation.replace('StartScreen');
         } else {
           setLoading(false);
@@ -125,7 +192,7 @@ const Notifications = ({navigation}) => {
         onPress={() => {
           setNotifIndex(index);
           setNotifItem(item);
-          setModalNotif(true);
+          UpdateNotif(EmailData.id, item.id);
         }}>
         <View style={{flexDirection: 'row'}}>
           <View style={styles.iconnotifcard}>
