@@ -21,8 +21,10 @@ const WW = Dimensions.get('window').width;
 const WH = Dimensions.get('window').height;
 
 const LoginScreen = ({navigation}) => {
-  const [Email, setEmail] = useState('avinashawin48@gmail.com');
-  const [Password, setPassword] = useState('avinash');
+  // const [Email, setEmail] = useState('avinashawin48@gmail.com');
+  // const [Password, setPassword] = useState('avinash');
+  const [Email, setEmail] = useState('');
+  const [Password, setPassword] = useState('');
   const [Loading, setLoading] = useState(false);
 
   useEffect(() => {}, []);
