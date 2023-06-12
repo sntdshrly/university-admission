@@ -705,24 +705,34 @@ const ScoreScreen = ({navigation}) => {
               </View>
               <View style={styles.boxScore}>
                 <TextInput
+                  maxLength={3}
                   editable={EditNilai}
                   style={styles.inputCell}
                   value={matematika_KKMGanjil}
                   keyboardType="numeric"
                   onChangeText={value => {
-                    setMatematika_KKMGanjil(value);
+                    if (value > 100) {
+                      setMatematika_KKMGanjil(100);
+                    } else {
+                      setMatematika_KKMGanjil(value);
+                    }
                   }}
                 />
               </View>
               <Text style={styles.headerCell}>
                 <View style={styles.boxScore}>
                   <TextInput
+                    maxLength={3}
                     editable={EditNilai}
                     style={styles.inputCell}
                     value={matematika_Ganjil}
                     keyboardType="numeric"
                     onChangeText={value => {
-                      setMatematika_Ganjil(value);
+                      if (value > 100) {
+                        setMatematika_Ganjil(100);
+                      } else {
+                        setMatematika_Ganjil(value);
+                      }
                     }}
                   />
                 </View>
@@ -730,12 +740,17 @@ const ScoreScreen = ({navigation}) => {
               <Text style={styles.headerCell}>
                 <View style={styles.boxScore}>
                   <TextInput
+                    maxLength={3}
                     editable={EditNilai}
                     style={styles.inputCell}
                     value={matematika_KKMGenap}
                     keyboardType="numeric"
                     onChangeText={value => {
-                      setMatematika_KKMGenap(value);
+                      if (value > 100) {
+                        setMatematika_KKMGenap(100);
+                      } else {
+                        setMatematika_KKMGenap(value);
+                      }
                     }}
                   />
                 </View>
@@ -743,12 +758,17 @@ const ScoreScreen = ({navigation}) => {
               <Text style={styles.headerCell}>
                 <View style={styles.boxScore}>
                   <TextInput
+                    maxLength={3}
                     editable={EditNilai}
                     style={styles.inputCell}
                     value={matematika_Genap}
                     keyboardType="numeric"
                     onChangeText={value => {
-                      setMatematika_Genap(value);
+                      if (value > 100) {
+                        setMatematika_Genap(100);
+                      } else {
+                        setMatematika_Genap(value);
+                      }
                     }}
                   />
                 </View>
@@ -760,24 +780,34 @@ const ScoreScreen = ({navigation}) => {
               </View>
               <View style={styles.boxScore}>
                 <TextInput
+                  maxLength={3}
                   editable={EditNilai}
                   style={styles.inputCell}
                   value={bahasaIndonesia_KKMGanjil}
                   keyboardType="numeric"
                   onChangeText={value => {
-                    setBahasaIndonesia_KKMGanjil(value);
+                    if (value > 100) {
+                      setBahasaIndonesia_KKMGanjil(100);
+                    } else {
+                      setBahasaIndonesia_KKMGanjil(value);
+                    }
                   }}
                 />
               </View>
               <Text style={styles.headerCell}>
                 <View style={styles.boxScore}>
                   <TextInput
+                    maxLength={3}
                     editable={EditNilai}
                     style={styles.inputCell}
                     value={bahasaIndonesia_Ganjil}
                     keyboardType="numeric"
                     onChangeText={value => {
-                      setBahasaIndonesia_Ganjil(value);
+                      if (value > 100) {
+                        setBahasaIndonesia_Ganjil(100);
+                      } else {
+                        setBahasaIndonesia_Ganjil(value);
+                      }
                     }}
                   />
                 </View>
@@ -785,12 +815,17 @@ const ScoreScreen = ({navigation}) => {
               <Text style={styles.headerCell}>
                 <View style={styles.boxScore}>
                   <TextInput
+                    maxLength={3}
                     editable={EditNilai}
                     style={styles.inputCell}
                     value={bahasaIndonesia_KKMGenap}
                     keyboardType="numeric"
                     onChangeText={value => {
-                      setBahasaIndonesia_KKMGenap(value);
+                      if (value > 100) {
+                        setBahasaIndonesia_KKMGenap(100);
+                      } else {
+                        setBahasaIndonesia_KKMGenap(value);
+                      }
                     }}
                   />
                 </View>
@@ -798,12 +833,17 @@ const ScoreScreen = ({navigation}) => {
               <Text style={styles.headerCell}>
                 <View style={styles.boxScore}>
                   <TextInput
+                    maxLength={3}
                     editable={EditNilai}
                     style={styles.inputCell}
                     value={bahasaIndonesia_Genap}
                     keyboardType="numeric"
                     onChangeText={value => {
-                      setBahasaIndonesia_Genap(value);
+                      if (value > 100) {
+                        setBahasaIndonesia_Genap(100);
+                      } else {
+                        setBahasaIndonesia_Genap(value);
+                      }
                     }}
                   />
                 </View>
@@ -816,24 +856,34 @@ const ScoreScreen = ({navigation}) => {
               </View>
               <View style={styles.boxScore}>
                 <TextInput
+                  maxLength={3}
                   editable={EditNilai}
                   style={styles.inputCell}
                   value={bahasaInggris_KKMGanjil}
                   keyboardType="numeric"
                   onChangeText={value => {
-                    setBahasaInggris_KKMGanjil(value);
+                    if (value > 100) {
+                      setBahasaInggris_KKMGanjil(100);
+                    } else {
+                      setBahasaInggris_KKMGanjil(value);
+                    }
                   }}
                 />
               </View>
               <Text style={styles.headerCell}>
                 <View style={styles.boxScore}>
                   <TextInput
+                    maxLength={3}
                     editable={EditNilai}
                     style={styles.inputCell}
                     value={bahasaInggris_Ganjil}
                     keyboardType="numeric"
                     onChangeText={value => {
-                      setBahasaInggris_Ganjil(value);
+                      if (value > 100) {
+                        setBahasaInggris_Ganjil(100);
+                      } else {
+                        setBahasaInggris_Ganjil(value);
+                      }
                     }}
                   />
                 </View>
@@ -841,12 +891,17 @@ const ScoreScreen = ({navigation}) => {
               <Text style={styles.headerCell}>
                 <View style={styles.boxScore}>
                   <TextInput
+                    maxLength={3}
                     editable={EditNilai}
                     style={styles.inputCell}
                     value={bahasaInggris_KKMGenap}
                     keyboardType="numeric"
                     onChangeText={value => {
-                      setBahasaInggris_KKMGenap(value);
+                      if (value > 100) {
+                        setBahasaInggris_KKMGenap(100);
+                      } else {
+                        setBahasaInggris_KKMGenap(value);
+                      }
                     }}
                   />
                 </View>
@@ -854,12 +909,17 @@ const ScoreScreen = ({navigation}) => {
               <Text style={styles.headerCell}>
                 <View style={styles.boxScore}>
                   <TextInput
+                    maxLength={3}
                     editable={EditNilai}
                     style={styles.inputCell}
                     value={bahasaInggris_Genap}
                     keyboardType="numeric"
                     onChangeText={value => {
-                      setBahasaInggris_Genap(value);
+                      if (value > 100) {
+                        setBahasaInggris_Genap(100);
+                      } else {
+                        setBahasaInggris_Genap(value);
+                      }
                     }}
                   />
                 </View>
@@ -871,24 +931,34 @@ const ScoreScreen = ({navigation}) => {
               </View>
               <View style={styles.boxScore}>
                 <TextInput
+                  maxLength={3}
                   editable={EditNilai}
                   style={styles.inputCell}
                   value={fisika_KKMGanjil}
                   keyboardType="numeric"
                   onChangeText={value => {
-                    setFisika_KKMGanjil(value);
+                    if (value > 100) {
+                      setFisika_KKMGanjil(100);
+                    } else {
+                      setFisika_KKMGanjil(value);
+                    }
                   }}
                 />
               </View>
               <Text style={styles.headerCell}>
                 <View style={styles.boxScore}>
                   <TextInput
+                    maxLength={3}
                     editable={EditNilai}
                     style={styles.inputCell}
                     value={fisika_Ganjil}
                     keyboardType="numeric"
                     onChangeText={value => {
-                      setFisika_Ganjil(value);
+                      if (value > 100) {
+                        setFisika_Ganjil(100);
+                      } else {
+                        setFisika_Ganjil(value);
+                      }
                     }}
                   />
                 </View>
@@ -896,12 +966,17 @@ const ScoreScreen = ({navigation}) => {
               <Text style={styles.headerCell}>
                 <View style={styles.boxScore}>
                   <TextInput
+                    maxLength={3}
                     editable={EditNilai}
                     style={styles.inputCell}
                     value={fisika_KKMGenap}
                     keyboardType="numeric"
                     onChangeText={value => {
-                      setFisika_KKMGenap(value);
+                      if (value > 100) {
+                        setFisika_KKMGenap(100);
+                      } else {
+                        setFisika_KKMGenap(value);
+                      }
                     }}
                   />
                 </View>
@@ -909,12 +984,17 @@ const ScoreScreen = ({navigation}) => {
               <Text style={styles.headerCell}>
                 <View style={styles.boxScore}>
                   <TextInput
+                    maxLength={3}
                     editable={EditNilai}
                     style={styles.inputCell}
                     value={fisika_Genap}
                     keyboardType="numeric"
                     onChangeText={value => {
-                      setFisika_Genap(value);
+                      if (value > 100) {
+                        setFisika_Genap(100);
+                      } else {
+                        setFisika_Genap(value);
+                      }
                     }}
                   />
                 </View>
@@ -927,24 +1007,34 @@ const ScoreScreen = ({navigation}) => {
               </View>
               <View style={styles.boxScore}>
                 <TextInput
+                  maxLength={3}
                   editable={EditNilai}
                   style={styles.inputCell}
                   value={kimia_KKMGanjil}
                   keyboardType="numeric"
                   onChangeText={value => {
-                    setKimia_KKMGanjil(value);
+                    if (value > 100) {
+                      setKimia_KKMGanjil(100);
+                    } else {
+                      setKimia_KKMGanjil(value);
+                    }
                   }}
                 />
               </View>
               <Text style={styles.headerCell}>
                 <View style={styles.boxScore}>
                   <TextInput
+                    maxLength={3}
                     editable={EditNilai}
                     style={styles.inputCell}
                     value={kimia_Ganjil}
                     keyboardType="numeric"
                     onChangeText={value => {
-                      setKimia_Ganjil(value);
+                      if (value > 100) {
+                        setKimia_Ganjil(100);
+                      } else {
+                        setKimia_Ganjil(value);
+                      }
                     }}
                   />
                 </View>
@@ -952,12 +1042,17 @@ const ScoreScreen = ({navigation}) => {
               <Text style={styles.headerCell}>
                 <View style={styles.boxScore}>
                   <TextInput
+                    maxLength={3}
                     editable={EditNilai}
                     style={styles.inputCell}
                     value={kimia_KKMGenap}
                     keyboardType="numeric"
                     onChangeText={value => {
-                      setKimia_KKMGenap(value);
+                      if (value > 100) {
+                        setKimia_KKMGenap(100);
+                      } else {
+                        setKimia_KKMGenap(value);
+                      }
                     }}
                   />
                 </View>
@@ -965,12 +1060,17 @@ const ScoreScreen = ({navigation}) => {
               <Text style={styles.headerCell}>
                 <View style={styles.boxScore}>
                   <TextInput
+                    maxLength={3}
                     editable={EditNilai}
                     style={styles.inputCell}
                     value={kimia_Genap}
                     keyboardType="numeric"
                     onChangeText={value => {
-                      setKimia_Genap(value);
+                      if (value > 100) {
+                        setKimia_Genap(100);
+                      } else {
+                        setKimia_Genap(value);
+                      }
                     }}
                   />
                 </View>
@@ -982,24 +1082,34 @@ const ScoreScreen = ({navigation}) => {
               </View>
               <View style={styles.boxScore}>
                 <TextInput
+                  maxLength={3}
                   editable={EditNilai}
                   style={styles.inputCell}
                   value={biologi_KKMGanjil}
                   keyboardType="numeric"
                   onChangeText={value => {
-                    setBiologi_KKMGanjil(value);
+                    if (value > 100) {
+                      setBiologi_KKMGanjil(100);
+                    } else {
+                      setBiologi_KKMGanjil(value);
+                    }
                   }}
                 />
               </View>
               <Text style={styles.headerCell}>
                 <View style={styles.boxScore}>
                   <TextInput
+                    maxLength={3}
                     editable={EditNilai}
                     style={styles.inputCell}
                     value={biologi_Ganjil}
                     keyboardType="numeric"
                     onChangeText={value => {
-                      setBiologi_Ganjil(value);
+                      if (value > 100) {
+                        setBiologi_Ganjil(100);
+                      } else {
+                        setBiologi_Ganjil(value);
+                      }
                     }}
                   />
                 </View>
@@ -1007,12 +1117,17 @@ const ScoreScreen = ({navigation}) => {
               <Text style={styles.headerCell}>
                 <View style={styles.boxScore}>
                   <TextInput
+                    maxLength={3}
                     editable={EditNilai}
                     style={styles.inputCell}
                     value={biologi_KKMGenap}
                     keyboardType="numeric"
                     onChangeText={value => {
-                      setBiologi_KKMGenap(value);
+                      if (value > 100) {
+                        setBiologi_KKMGenap(100);
+                      } else {
+                        setBiologi_KKMGenap(value);
+                      }
                     }}
                   />
                 </View>
@@ -1020,12 +1135,17 @@ const ScoreScreen = ({navigation}) => {
               <Text style={styles.headerCell}>
                 <View style={styles.boxScore}>
                   <TextInput
+                    maxLength={3}
                     editable={EditNilai}
                     style={styles.inputCell}
                     value={biologi_Genap}
                     keyboardType="numeric"
                     onChangeText={value => {
-                      setBiologi_Genap(value);
+                      if (value > 100) {
+                        setBiologi_Genap(100);
+                      } else {
+                        setBiologi_Genap(value);
+                      }
                     }}
                   />
                 </View>
@@ -1038,24 +1158,34 @@ const ScoreScreen = ({navigation}) => {
               </View>
               <View style={styles.boxScore}>
                 <TextInput
+                  maxLength={3}
                   editable={EditNilai}
                   style={styles.inputCell}
                   value={ekonomi_KKMGanjil}
                   keyboardType="numeric"
                   onChangeText={value => {
-                    setEkonomi_KKMGanjil(value);
+                    if (value > 100) {
+                      setEkonomi_KKMGanjil(100);
+                    } else {
+                      setEkonomi_KKMGanjil(value);
+                    }
                   }}
                 />
               </View>
               <Text style={styles.headerCell}>
                 <View style={styles.boxScore}>
                   <TextInput
+                    maxLength={3}
                     editable={EditNilai}
                     style={styles.inputCell}
                     value={ekonomi_Ganjil}
                     keyboardType="numeric"
                     onChangeText={value => {
-                      setEkonomi_Ganjil(value);
+                      if (value > 100) {
+                        setEkonomi_Ganjil(100);
+                      } else {
+                        setEkonomi_Ganjil(value);
+                      }
                     }}
                   />
                 </View>
@@ -1063,12 +1193,17 @@ const ScoreScreen = ({navigation}) => {
               <Text style={styles.headerCell}>
                 <View style={styles.boxScore}>
                   <TextInput
+                    maxLength={3}
                     editable={EditNilai}
                     style={styles.inputCell}
                     value={ekonomi_KKMGenap}
                     keyboardType="numeric"
                     onChangeText={value => {
-                      setEkonomi_KKMGenap(value);
+                      if (value > 100) {
+                        setEkonomi_KKMGenap(100);
+                      } else {
+                        setEkonomi_KKMGenap(value);
+                      }
                     }}
                   />
                 </View>
@@ -1076,12 +1211,17 @@ const ScoreScreen = ({navigation}) => {
               <Text style={styles.headerCell}>
                 <View style={styles.boxScore}>
                   <TextInput
+                    maxLength={3}
                     editable={EditNilai}
                     style={styles.inputCell}
                     value={ekonomi_Genap}
                     keyboardType="numeric"
                     onChangeText={value => {
-                      setEkonomi_Genap(value);
+                      if (value > 100) {
+                        setEkonomi_Genap(100);
+                      } else {
+                        setEkonomi_Genap(value);
+                      }
                     }}
                   />
                 </View>
@@ -1094,24 +1234,34 @@ const ScoreScreen = ({navigation}) => {
               </View>
               <View style={styles.boxScore}>
                 <TextInput
+                  maxLength={3}
                   editable={EditNilai}
                   style={styles.inputCell}
                   value={geografi_KKMGanjil}
                   keyboardType="numeric"
                   onChangeText={value => {
-                    setGeografi_KKMGanjil(value);
+                    if (value > 100) {
+                      setGeografi_KKMGanjil(100);
+                    } else {
+                      setGeografi_KKMGanjil(value);
+                    }
                   }}
                 />
               </View>
               <Text style={styles.headerCell}>
                 <View style={styles.boxScore}>
                   <TextInput
+                    maxLength={3}
                     editable={EditNilai}
                     style={styles.inputCell}
                     value={geografi_Ganjil}
                     keyboardType="numeric"
                     onChangeText={value => {
-                      setGeografi_Ganjil(value);
+                      if (value > 100) {
+                        setGeografi_Ganjil(100);
+                      } else {
+                        setGeografi_Ganjil(value);
+                      }
                     }}
                   />
                 </View>
@@ -1119,12 +1269,17 @@ const ScoreScreen = ({navigation}) => {
               <Text style={styles.headerCell}>
                 <View style={styles.boxScore}>
                   <TextInput
+                    maxLength={3}
                     editable={EditNilai}
                     style={styles.inputCell}
                     value={geografi_KKMGenap}
                     keyboardType="numeric"
                     onChangeText={value => {
-                      setGeografi_KKMGenap(value);
+                      if (value > 100) {
+                        setGeografi_KKMGenap(100);
+                      } else {
+                        setGeografi_KKMGenap(value);
+                      }
                     }}
                   />
                 </View>
@@ -1132,12 +1287,17 @@ const ScoreScreen = ({navigation}) => {
               <Text style={styles.headerCell}>
                 <View style={styles.boxScore}>
                   <TextInput
+                    maxLength={3}
                     editable={EditNilai}
                     style={styles.inputCell}
                     value={geografi_Genap}
                     keyboardType="numeric"
                     onChangeText={value => {
-                      setGeografi_Genap(value);
+                      if (value > 100) {
+                        setGeografi_Genap(100);
+                      } else {
+                        setGeografi_Genap(value);
+                      }
                     }}
                   />
                 </View>
@@ -1149,24 +1309,34 @@ const ScoreScreen = ({navigation}) => {
               </View>
               <View style={styles.boxScore}>
                 <TextInput
+                  maxLength={3}
                   editable={EditNilai}
                   style={styles.inputCell}
                   value={sosiologi_KKMGanjil}
                   keyboardType="numeric"
                   onChangeText={value => {
-                    setSosiologi_KKMGanjil(value);
+                    if (value > 100) {
+                      setSosiologi_KKMGanjil(100);
+                    } else {
+                      setSosiologi_KKMGanjil(value);
+                    }
                   }}
                 />
               </View>
               <Text style={styles.headerCell}>
                 <View style={styles.boxScore}>
                   <TextInput
+                    maxLength={3}
                     editable={EditNilai}
                     style={styles.inputCell}
                     value={sosiologi_Ganjil}
                     keyboardType="numeric"
                     onChangeText={value => {
-                      setSosiologi_Ganjil(value);
+                      if (value > 100) {
+                        setSosiologi_Ganjil(100);
+                      } else {
+                        setSosiologi_Ganjil(value);
+                      }
                     }}
                   />
                 </View>
@@ -1174,12 +1344,17 @@ const ScoreScreen = ({navigation}) => {
               <Text style={styles.headerCell}>
                 <View style={styles.boxScore}>
                   <TextInput
+                    maxLength={3}
                     editable={EditNilai}
                     style={styles.inputCell}
                     value={sosiologi_KKMGenap}
                     keyboardType="numeric"
                     onChangeText={value => {
-                      setSosiologi_KKMGenap(value);
+                      if (value > 100) {
+                        setSosiologi_KKMGenap(100);
+                      } else {
+                        setSosiologi_KKMGenap(value);
+                      }
                     }}
                   />
                 </View>
@@ -1187,12 +1362,17 @@ const ScoreScreen = ({navigation}) => {
               <Text style={styles.headerCell}>
                 <View style={styles.boxScore}>
                   <TextInput
+                    maxLength={3}
                     editable={EditNilai}
                     style={styles.inputCell}
                     value={sosiologi_Genap}
                     keyboardType="numeric"
                     onChangeText={value => {
-                      setSosiologi_Genap(value);
+                      if (value > 100) {
+                        setSosiologi_Genap(100);
+                      } else {
+                        setSosiologi_Genap(value);
+                      }
                     }}
                   />
                 </View>
@@ -1205,24 +1385,34 @@ const ScoreScreen = ({navigation}) => {
               </View>
               <View style={styles.boxScore}>
                 <TextInput
+                  maxLength={3}
                   editable={EditNilai}
                   style={styles.inputCell}
                   value={bahasaMandarin_KKMGanjil}
                   keyboardType="numeric"
                   onChangeText={value => {
-                    setBahasaMandarin_KKMGanjil(value);
+                    if (value > 100) {
+                      setBahasaMandarin_KKMGanjil(100);
+                    } else {
+                      setBahasaMandarin_KKMGanjil(value);
+                    }
                   }}
                 />
               </View>
               <Text style={styles.headerCell}>
                 <View style={styles.boxScore}>
                   <TextInput
+                    maxLength={3}
                     editable={EditNilai}
                     style={styles.inputCell}
                     value={bahasaMandarin_Ganjil}
                     keyboardType="numeric"
                     onChangeText={value => {
-                      setBahasaMandarin_Ganjil(value);
+                      if (value > 100) {
+                        setBahasaMandarin_Ganjil(100);
+                      } else {
+                        setBahasaMandarin_Ganjil(value);
+                      }
                     }}
                   />
                 </View>
@@ -1230,12 +1420,17 @@ const ScoreScreen = ({navigation}) => {
               <Text style={styles.headerCell}>
                 <View style={styles.boxScore}>
                   <TextInput
+                    maxLength={3}
                     editable={EditNilai}
                     style={styles.inputCell}
                     value={bahasaMandarin_KKMGenap}
                     keyboardType="numeric"
                     onChangeText={value => {
-                      setBahasaMandarin_KKMGenap(value);
+                      if (value > 100) {
+                        setBahasaMandarin_KKMGenap(100);
+                      } else {
+                        setBahasaMandarin_KKMGenap(value);
+                      }
                     }}
                   />
                 </View>
@@ -1243,12 +1438,17 @@ const ScoreScreen = ({navigation}) => {
               <Text style={styles.headerCell}>
                 <View style={styles.boxScore}>
                   <TextInput
+                    maxLength={3}
                     editable={EditNilai}
                     style={styles.inputCell}
                     value={bahasaMandarin_Genap}
                     keyboardType="numeric"
                     onChangeText={value => {
-                      setBahasaMandarin_Genap(value);
+                      if (value > 100) {
+                        setBahasaMandarin_Genap(100);
+                      } else {
+                        setBahasaMandarin_Genap(value);
+                      }
                     }}
                   />
                 </View>
@@ -1261,24 +1461,34 @@ const ScoreScreen = ({navigation}) => {
               </View>
               <View style={styles.boxScore}>
                 <TextInput
+                  maxLength={3}
                   editable={EditNilai}
                   style={styles.inputCell}
                   value={bahasaJepang_KKMGanjil}
                   keyboardType="numeric"
                   onChangeText={value => {
-                    setBahasaJepang_KKMGanjil(value);
+                    if (value > 100) {
+                      setBahasaJepang_KKMGanjil(100);
+                    } else {
+                      setBahasaJepang_KKMGanjil(value);
+                    }
                   }}
                 />
               </View>
               <Text style={styles.headerCell}>
                 <View style={styles.boxScore}>
                   <TextInput
+                    maxLength={3}
                     editable={EditNilai}
                     style={styles.inputCell}
                     value={bahasaJepang_Ganjil}
                     keyboardType="numeric"
                     onChangeText={value => {
-                      setBahasaJepang_Ganjil(value);
+                      if (value > 100) {
+                        setBahasaJepang_Ganjil(100);
+                      } else {
+                        setBahasaJepang_Ganjil(value);
+                      }
                     }}
                   />
                 </View>
@@ -1286,12 +1496,17 @@ const ScoreScreen = ({navigation}) => {
               <Text style={styles.headerCell}>
                 <View style={styles.boxScore}>
                   <TextInput
+                    maxLength={3}
                     editable={EditNilai}
                     style={styles.inputCell}
                     value={bahasaJepang_KKMGenap}
                     keyboardType="numeric"
                     onChangeText={value => {
-                      setBahasaJepang_KKMGenap(value);
+                      if (value > 100) {
+                        setBahasaJepang_KKMGenap(100);
+                      } else {
+                        setBahasaJepang_KKMGenap(value);
+                      }
                     }}
                   />
                 </View>
@@ -1299,12 +1514,17 @@ const ScoreScreen = ({navigation}) => {
               <Text style={styles.headerCell}>
                 <View style={styles.boxScore}>
                   <TextInput
+                    maxLength={3}
                     editable={EditNilai}
                     style={styles.inputCell}
                     value={bahasaJepang_Genap}
                     keyboardType="numeric"
                     onChangeText={value => {
-                      setBahasaJepang_Genap(value);
+                      if (value > 100) {
+                        setBahasaJepang_Genap(100);
+                      } else {
+                        setBahasaJepang_Genap(value);
+                      }
                     }}
                   />
                 </View>
@@ -1316,24 +1536,34 @@ const ScoreScreen = ({navigation}) => {
               </View>
               <View style={styles.boxScore}>
                 <TextInput
+                  maxLength={3}
                   editable={EditNilai}
                   style={styles.inputCell}
                   value={bahasaKorea_KKMGanjil}
                   keyboardType="numeric"
                   onChangeText={value => {
-                    setBahasaKorea_KKMGanjil(value);
+                    if (value > 100) {
+                      setBahasaKorea_KKMGanjil(100);
+                    } else {
+                      setBahasaKorea_KKMGanjil(value);
+                    }
                   }}
                 />
               </View>
               <Text style={styles.headerCell}>
                 <View style={styles.boxScore}>
                   <TextInput
+                    maxLength={3}
                     editable={EditNilai}
                     style={styles.inputCell}
                     value={bahasaKorea_Ganjil}
                     keyboardType="numeric"
                     onChangeText={value => {
-                      setBahasaKorea_Ganjil(value);
+                      if (value > 100) {
+                        setBahasaKorea_Ganjil(100);
+                      } else {
+                        setBahasaKorea_Ganjil(value);
+                      }
                     }}
                   />
                 </View>
@@ -1341,12 +1571,17 @@ const ScoreScreen = ({navigation}) => {
               <Text style={styles.headerCell}>
                 <View style={styles.boxScore}>
                   <TextInput
+                    maxLength={3}
                     editable={EditNilai}
                     style={styles.inputCell}
                     value={bahasaKorea_KKMGenap}
                     keyboardType="numeric"
                     onChangeText={value => {
-                      setBahasaKorea_KKMGenap(value);
+                      if (value > 100) {
+                        setBahasaKorea_KKMGenap(100);
+                      } else {
+                        setBahasaKorea_KKMGenap(value);
+                      }
                     }}
                   />
                 </View>
@@ -1354,12 +1589,17 @@ const ScoreScreen = ({navigation}) => {
               <Text style={styles.headerCell}>
                 <View style={styles.boxScore}>
                   <TextInput
+                    maxLength={3}
                     editable={EditNilai}
                     style={styles.inputCell}
                     value={bahasaKorea_Genap}
                     keyboardType="numeric"
                     onChangeText={value => {
-                      setBahasaKorea_Genap(value);
+                      if (value > 100) {
+                        setBahasaKorea_Genap(100);
+                      } else {
+                        setBahasaKorea_Genap(value);
+                      }
                     }}
                   />
                 </View>
@@ -1372,24 +1612,34 @@ const ScoreScreen = ({navigation}) => {
               </View>
               <View style={styles.boxScore}>
                 <TextInput
+                  maxLength={3}
                   editable={EditNilai}
                   style={styles.inputCell}
                   value={bahasaJerman_KKMGanjil}
                   keyboardType="numeric"
                   onChangeText={value => {
-                    setBahasaJerman_KKMGanjil(value);
+                    if (value > 100) {
+                      setBahasaJerman_KKMGanjil(100);
+                    } else {
+                      setBahasaJerman_KKMGanjil(value);
+                    }
                   }}
                 />
               </View>
               <Text style={styles.headerCell}>
                 <View style={styles.boxScore}>
                   <TextInput
+                    maxLength={3}
                     editable={EditNilai}
                     style={styles.inputCell}
                     value={bahasaJerman_Ganjil}
                     keyboardType="numeric"
                     onChangeText={value => {
-                      setBahasaJerman_Ganjil(value);
+                      if (value > 100) {
+                        setBahasaJerman_Ganjil(100);
+                      } else {
+                        setBahasaJerman_Ganjil(value);
+                      }
                     }}
                   />
                 </View>
@@ -1397,12 +1647,17 @@ const ScoreScreen = ({navigation}) => {
               <Text style={styles.headerCell}>
                 <View style={styles.boxScore}>
                   <TextInput
+                    maxLength={3}
                     editable={EditNilai}
                     style={styles.inputCell}
                     value={bahasaJerman_KKMGenap}
                     keyboardType="numeric"
                     onChangeText={value => {
-                      setBahasaJerman_KKMGenap(value);
+                      if (value > 100) {
+                        setBahasaJerman_KKMGenap(100);
+                      } else {
+                        setBahasaJerman_KKMGenap(value);
+                      }
                     }}
                   />
                 </View>
@@ -1410,12 +1665,17 @@ const ScoreScreen = ({navigation}) => {
               <Text style={styles.headerCell}>
                 <View style={styles.boxScore}>
                   <TextInput
+                    maxLength={3}
                     editable={EditNilai}
                     style={styles.inputCell}
                     value={bahasaJerman_Genap}
                     keyboardType="numeric"
                     onChangeText={value => {
-                      setBahasaJerman_Genap(value);
+                      if (value > 100) {
+                        setBahasaJerman_Genap(100);
+                      } else {
+                        setBahasaJerman_Genap(value);
+                      }
                     }}
                   />
                 </View>

@@ -127,7 +127,7 @@ const HomeScreen = ({navigation}) => {
       source={require('../assets/header.png')}
       style={{
         width: WW,
-        height: WH * 0.5,
+        height: WH * 0.7,
         overflow: 'hidden',
         padding: (WW * 7) / 100,
         flex: 1,

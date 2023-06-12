@@ -79,13 +79,7 @@ const LoginScreen = ({navigation}) => {
           setLoading(false);
           const valueJSON = JSON.stringify(res.data.data.user);
           await AsyncStorage.setItem('@userData', valueJSON);
-          await AsyncStorage.setItem('@Token', res.data.data.access_token)
-            .then(() => {
-              console.log('JSON object saved successfully.');
-            })
-            .catch(error => {
-              console.log('Error saving JSON object:', error);
-            });
+          await AsyncStorage.setItem('@Token', res.data.data.access_token);
           navigation.replace('HomeScreen');
         } else {
           setLoading(false);

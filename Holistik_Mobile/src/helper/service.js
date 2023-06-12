@@ -63,7 +63,7 @@ export default {
               }),
             ]);
           } else {
-            Alert.alert('Error ' + defaultLink, error.message, [
+            Alert.alert('Info', 'Proses Gagal!', [
               {text: 'Cancel'},
               {
                 text: 'Retry',
@@ -75,7 +75,6 @@ export default {
                     })
                     .catch(err => {
                       ToastAndroid.show('Request Service Timeout..', 5000);
-                      reject();
                     });
                 },
               },
@@ -146,7 +145,7 @@ export default {
               }),
             ]);
           } else {
-            Alert.alert('Error ' + defaultLink, error.message, [
+            Alert.alert('Info', 'Proses Gagal!', [
               {text: 'Cancel'},
               {
                 text: 'Retry',
@@ -158,7 +157,6 @@ export default {
                     })
                     .catch(err => {
                       ToastAndroid.show('Request Service Timeout..', 5000);
-                      reject();
                     });
                 },
               },
@@ -228,7 +226,7 @@ export default {
               }),
             ]);
           } else {
-            Alert.alert('Error ' + defaultLink, error.message, [
+            Alert.alert('Info', 'Proses Gagal!', [
               {text: 'Cancel'},
               {
                 text: 'Retry',
@@ -240,7 +238,6 @@ export default {
                     })
                     .catch(err => {
                       ToastAndroid.show('Request Service Timeout..', 5000);
-                      reject();
                     });
                 },
               },
@@ -301,16 +298,16 @@ export default {
             reject();
           } else if (error.message == 'Request failed with status code 401') {
             Alert.alert('Sesi Berakhir', 'Silahkan Login Ulang', [
-              ({text: 'Cancel'},
               {
                 text: 'OK',
                 onPress: () => {
                   navigation.replace('StartScreen');
                 },
-              }),
+              },
             ]);
           } else {
-            Alert.alert('Error ' + defaultLink, error.message, [
+            console.warn(defaultLink, error.message);
+            Alert.alert('Info', 'Proses Gagal!', [
               {text: 'Cancel'},
               {
                 text: 'Retry',
@@ -322,7 +319,6 @@ export default {
                     })
                     .catch(err => {
                       ToastAndroid.show('Request Service Timeout..', 5000);
-                      reject();
                     });
                 },
               },
