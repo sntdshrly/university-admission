@@ -1,7 +1,6 @@
 <h1 align="center">Manajemen PMB Universitas Kristen Maranatha</h1>
 
-![Main Page](https://github.com/sntdshrly/university-admission/assets/71547739/5ff2cdaf-586f-41a8-b1ab-16828761380b)
-
+![halaman](https://github.com/sntdshrly/university-admission/assets/71547739/fec75045-980f-44ec-b495-2312551cb3ec)
 
 ## Documentation
 
