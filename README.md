@@ -9,7 +9,7 @@
 - [Website](https://holistik.it.maranatha.edu/)
 - [Dataset](https://github.com/sntdshrly/university-admission/tree/main/dataset)
 
-## Capstone Project Teams
+## Project Teams
 
 | Name                      |     ID      |
 | ------------------------- | ----------- |
