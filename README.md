@@ -4,7 +4,7 @@
 
 ## Documentation
 
-- [Machine Learning](https://github.com/sntdshrly/university-admission/model)
+- [Machine Learning](https://github.com/sntdshrly/university-admission/tree/main/model)
 - [Mobile Application](https://github.com/sntdshrly/university-admission/tree/main/Holistik_Mobile)
 - [Website](https://holistik.it.maranatha.edu/)
 - [Dataset](https://github.com/sntdshrly/university-admission/tree/main/dataset)
