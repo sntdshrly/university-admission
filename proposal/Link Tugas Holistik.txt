@@ -1,0 +1,4 @@
+- Proposal => https://docs.google.com/document/d/1YnsGHLfBSVJuOSLlqsWhldsnyxhxd00B/edit?usp=sharing&ouid=118283063447264324366&rtpof=true&sd=true
+- Github => https://github.com/sntdshrly/university-admission
+- Github => https://github.com/1772012/college-university-admission-system
+- Video => https://drive.google.com/file/d/1XeBSSOYm8KWSVj9VPYU6NLNTG7nbk5IM/view?usp=sharing
